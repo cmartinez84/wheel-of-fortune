@@ -28,9 +28,10 @@ function AnswerMaker (clue, answer){
 AnswerMaker.prototype.letterCheck = function(letter) {
   var occurrenceOfLetter = [];
   for(var i = 0; i < this.answerSplit.length; i ++){
-    if((this.answerSplit[i] === letter) && this.guessedLetters.indexOf(letter) !== -1){
+    if((this.answerSplit[i] === letter) && this.guessedLetters.indexOf(letter) === -1){
       occurrenceOfLetter.push(i);
       this.hiddenArray[i] =letter;
+      console.log(letter);
     }
     else if((this.answerSplit.indexOf(letter) === -1)&&(this.wrongGuesses.indexOf(letter)) === -1){
       this.wrongGuesses.push(letter);
