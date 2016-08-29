@@ -20,10 +20,19 @@ function AnswerMaker (clue, answer){
     else{
       return " ";
     }
-  })
+  });
 };
 
+AnswerMaker.prototype.letterCheck = function(letter) {
+  var occurrenceOfLetter = [];
+  for(var i = 0; i < this.answerSplit.length; i ++){
+    if(this.answerSplit[i] === letter){
+      occurrenceOfLetter.push(i);
+      this.hiddenArray[i] =letter;
+    }
+  }
 
+}
 
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
@@ -72,7 +81,6 @@ $(document).ready(function(){
     console.log(player2Name);
     var player1 = new Player(player1Name);
     var player2 = new Player(player2Name);
-    var sampleAnswer =  answersArray[0];
     $("#player-one").text(player1Name);
     $("#player-two").text(player2Name);
   });
