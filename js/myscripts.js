@@ -12,12 +12,7 @@ function Player(name){
 function AnswerMaker (clue, answer){
   this.clue = clue;
   this.answer = answer;
-
   this.answerSplit = answer.split("");
-  this.hiddenArray = [];
-};
-
-AnswerMaker.prototype.hideAnswer = function(){
   this.hiddenArray = this.answerSplit.map(function(i){
     if(i !== " "){
       return "_";
@@ -26,20 +21,9 @@ AnswerMaker.prototype.hideAnswer = function(){
       return " ";
     }
   })
-}
-
-var answersArray = []; ///answer objevts
-
-  this.hiddenAnswerArray = [];
-
 };
 
-AnswerMaker.prototype.hideAnswer = function(){
-  var answerLetter = this.answer.split("");
-  answerLetter.map(hiddenAnswerArray.push("_"));
-    // a-zA-Z
-    console.log("this.hiddenAnswerArray");
-  };
+
 
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
@@ -77,9 +61,7 @@ $(document).ready(function(){
   var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
 
-wheel.spin(wheelWedges);
-
-var sampleAnswer =  answersArray[0];
+  wheel.spin(wheelWedges);
 
   $("#letterEntryForm").submit(function(event){
 
@@ -88,3 +70,6 @@ var sampleAnswer =  answersArray[0];
     wheel.spin(wheelWedges);
   });
 });
+
+
+var sampleAnswer =  answersArray[0];
