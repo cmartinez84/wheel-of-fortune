@@ -12,18 +12,28 @@ function Player(name){
 function AnswerMaker (clue, answer){
   this.clue = clue;
   this.answer = answer;
+  this.answerSplit = answer.split("");
+  this.hiddenArray = [];
 };
 
-var answersArray = [];
+AnswerMaker.prototype.hideAnswer = function(){
+  this.hiddenArray = this.answerSplit.map(function(i){
+    if(i !== " "){
+      return "_";
+    }
+    else{
+      return " ";
+    }
+  })
+}
+
+var answersArray = []; ///answer objevts
 var answers = [["Food & Drink", "Fish And Chips"],["Pop Songs", "All My Single Ladies"],["Movies", "Gone With the Wind"]];
 
 answers.forEach(function(answer){
   var newAnswer = new AnswerMaker(answer[0],answer[1]);
   answersArray.push(newAnswer);
 });
-
-
-console.log(answersArray);
 
 Wheel.prototype.spin = function(wedges){
   var randomNumber = Math.floor((Math.random() * 23) + 1);
@@ -37,3 +47,5 @@ var wheel = new Wheel(wheelWedges);
 var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
 wheel.spin(wheelWedges);
+
+var sampleAnswer =  answersArray[0];
