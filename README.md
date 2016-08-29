@@ -16,7 +16,7 @@ if player guesses correctly,
   they spin again
 
 if guessed letter does not exist in phrase, next player begins their turn
-after third player round is over, 1 st player begins their turn again
+after third player round is over, 1st player begins their turn again
 game continues until al letters on board have been guessed, or player tries to guess the entire phrase
   value for completely phrase tbd
 player has option to buy a vowel at any time if their score is greater than zero
