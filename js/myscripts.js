@@ -12,6 +12,24 @@ function Player(name){
 function AnswerMaker (clue, answer){
   this.clue = clue;
   this.answer = answer;
+
+  this.answerSplit = answer.split("");
+  this.hiddenArray = [];
+};
+
+AnswerMaker.prototype.hideAnswer = function(){
+  this.hiddenArray = this.answerSplit.map(function(i){
+    if(i !== " "){
+      return "_";
+    }
+    else{
+      return " ";
+    }
+  })
+}
+
+var answersArray = []; ///answer objevts
+
   this.hiddenAnswerArray = [];
 
 };
@@ -27,15 +45,13 @@ var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
+
 var answers = [["Food & Drink", "Fish And Chips"],["Pop Songs", "All My Single Ladies"],["Movies", "Gone With the Wind"]];
 
 answers.forEach(function(answer){
   var newAnswer = new AnswerMaker(answer[0],answer[1]);
   answersArray.push(newAnswer);
 });
-
-
-console.log(answersArray);
 
 Wheel.prototype.spin = function(wedges){
   var randomNumber = Math.floor((Math.random() * 23) + 1);
@@ -68,6 +84,7 @@ $(document).ready(function(){
     console.log(player2Name);
     var player1 = new Player(player1Name);
     var player2 = new Player(player2Name);
+    var sampleAnswer =  answersArray[0];
     $("#player-one").text(player1Name);
     $("#player-two").text(player2Name);
   });
