@@ -20,6 +20,7 @@ function AnswerMaker (clue, answer){
     else{
       return " ";
     }
+
   });
 };
 
@@ -31,14 +32,13 @@ AnswerMaker.prototype.letterCheck = function(letter) {
       this.hiddenArray[i] =letter;
     }
   }
+});
 
-}
+
 
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
-
-
 var answers = [["Food & Drink", "Fish And Chips"],["Pop Songs", "All My Single Ladies"],["Movies", "Gone With the Wind"]];
 
 answers.forEach(function(answer){
@@ -69,10 +69,6 @@ $(document).ready(function(){
   var wheel = new Wheel(wheelWedges);
   var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
-
-
-  wheel.spin(wheelWedges);
-
   $("#playerEntryForm").submit(function(event){
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
@@ -83,6 +79,15 @@ $(document).ready(function(){
     var player2 = new Player(player2Name);
     $("#player-one").text(player1Name);
     $("#player-two").text(player2Name);
+    $("#player-one-score").text(player1.score);
+    $("#player-two-score").text(player2.score);
+    $("#spin").show();
+    $("#playerEntryForm").hide();
+  });
+
+  $("#spin").click(function(){
+
+    wheel.spin(wheelWedges);
   });
 
 
@@ -90,9 +95,7 @@ $(document).ready(function(){
 
   });
 
-  $("#spin").click(function(){
-    wheel.spin(wheelWedges);
-  });
+
 });
 
 
