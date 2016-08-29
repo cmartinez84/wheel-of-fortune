@@ -7,6 +7,8 @@ function Player(name){
   this.name = name;
   this.score = 0;
   this.avatar = "";
+  this.spinNumber = spinNumber;
+  this.guess = guess;
 };
 
 function AnswerMaker (clue, answer){
@@ -102,8 +104,9 @@ $(document).ready(function(){
   });
 
   $("#spin").click(function(){
-
     wheel.spin(wheelWedges);
+    if (spinOutput === "Bankrupt") {
+    }
   });
 
 
