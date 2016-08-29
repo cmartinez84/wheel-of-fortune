@@ -20,8 +20,21 @@ function AnswerMaker (clue, answer){
     else{
       return " ";
     }
-  })
-}
+
+  });
+};
+
+AnswerMaker.prototype.letterCheck = function(letter) {
+  var occurrenceOfLetter = [];
+  for(var i = 0; i < this.answerSplit.length; i ++){
+    if(this.answerSplit[i] === letter){
+      occurrenceOfLetter.push(i);
+      this.hiddenArray[i] =letter;
+    }
+  }
+});
+
+
 
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
