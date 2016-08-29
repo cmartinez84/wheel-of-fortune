@@ -61,11 +61,27 @@ $(document).ready(function(){
   var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
 
+
   wheel.spin(wheelWedges);
+
+  $("#playerEntryForm").submit(function(event){
+    event.preventDefault();
+    var player1Name = $("input#player1Input").val();
+    var player2Name = $("input#player2Input").val();
+    console.log(player1Name);
+    console.log(player2Name);
+    var player1 = new Player(player1Name);
+    var player2 = new Player(player2Name);
+    var sampleAnswer =  answersArray[0];
+    $("#player-one").text(player1Name);
+    $("#player-two").text(player2Name);
+  });
+
 
   $("#letterEntryForm").submit(function(event){
 
   });
+
   $("#spin").click(function(){
     wheel.spin(wheelWedges);
   });

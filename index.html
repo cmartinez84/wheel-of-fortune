@@ -8,7 +8,28 @@
     <title>Wheel of Fortune</title>
   </head>
   <body>
-    <p>Placeholder text</p>
+    <h1>Wheel of Fortune!</h1>
+    <form id="playerEntryForm">
+      <div class="form-group">
+        <label for="player1Input">Enter Player 1's name</label>
+        <input type="text" class="form-control" required id="player1Input">
+        <label for="player2Input">Enter Player 2's name</label>
+        <input type="text" class="form-control" required id="player2Input">
+        <button type="submit" class="btn btn-info">Submit</button>
+      </form>
+
+      <div class="game-display">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 id="player-one"></h2>
+          </div>
+          <div class="col-md-6">
+            <h2 id="player-two"></h2>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="spin" type="button" name="button">Spin!</button>
+      </div>
+
     <form id="letterEntryForm">
       <div class="form-group">
         <label for="letterEntryInput">Enter a letter</label>
@@ -16,6 +37,6 @@
         <button type="submit" class="btn btn-success">Submit</button>
       </div>
     </form>
-    <button class="btn btn-primary" id="spin" type="button" name="button">Spin!</button>
+
   </body>
 </html>
