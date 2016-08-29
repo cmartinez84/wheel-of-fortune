@@ -23,14 +23,6 @@ function AnswerMaker (clue, answer){
   })
 }
 
-AnswerMaker.prototype.hideAnswer = function(){
-  var answerLetter = this.answer.split("");
-  answerLetter.map(hiddenAnswerArray.push("_"));
-    // a-zA-Z
-    console.log("this.hiddenAnswerArray");
-};
-
-
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
@@ -64,10 +56,6 @@ $(document).ready(function(){
   var wheel = new Wheel(wheelWedges);
   var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
-
-
-  wheel.spin(wheelWedges);
-
   $("#playerEntryForm").submit(function(event){
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
@@ -76,7 +64,6 @@ $(document).ready(function(){
     console.log(player2Name);
     var player1 = new Player(player1Name);
     var player2 = new Player(player2Name);
-    var sampleAnswer =  answersArray[0];
     $("#player-one").text(player1Name);
     $("#player-two").text(player2Name);
     $("#player-one-score").text(player1.score);
