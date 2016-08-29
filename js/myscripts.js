@@ -20,19 +20,26 @@ function AnswerMaker (clue, answer){
     else{
       return " ";
     }
-
   });
+  this.guessedLetters=[];
+  this.wrongGuesses=[];
 };
 
 AnswerMaker.prototype.letterCheck = function(letter) {
   var occurrenceOfLetter = [];
   for(var i = 0; i < this.answerSplit.length; i ++){
-    if(this.answerSplit[i] === letter){
+    if((this.answerSplit[i] === letter) && this.guessedLetters.indexOf(letter) !== -1){
       occurrenceOfLetter.push(i);
       this.hiddenArray[i] =letter;
     }
+    else if((this.answerSplit.indexOf(letter) === -1)&&(this.wrongGuesses.indexOf(letter)) === -1){
+      this.wrongGuesses.push(letter);
+    }
   }
-});
+  if(this.guessedLetters.indexOf(letter) === -1){
+    this.guessedLetters.push(letter);
+  }
+};
 
 
 
