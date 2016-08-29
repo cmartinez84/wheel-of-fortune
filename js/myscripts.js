@@ -43,6 +43,14 @@ AnswerMaker.prototype.letterCheck = function(letter) {
     this.guessedLetters.push(letter);
   }
 };
+AnswerMaker.prototype.checkSolved = function(){
+  if (this.hiddenArray.indexOf("_") === -1){
+    alert("you are  a winner!");
+  }
+  else{
+    console.log("you aren't winning");
+  }
+}
 
 
 
