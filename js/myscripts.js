@@ -28,12 +28,6 @@ AnswerMaker.prototype.hideAnswer = function(){
   })
 }
 
-var answersArray = []; ///answer objevts
-
-  this.hiddenAnswerArray = [];
-
-};
-
 AnswerMaker.prototype.hideAnswer = function(){
   var answerLetter = this.answer.split("");
   answerLetter.map(hiddenAnswerArray.push("_"));
@@ -44,8 +38,6 @@ AnswerMaker.prototype.hideAnswer = function(){
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
-
-
 var answers = [["Food & Drink", "Fish And Chips"],["Pop Songs", "All My Single Ladies"],["Movies", "Gone With the Wind"]];
 
 answers.forEach(function(answer){
@@ -87,13 +79,19 @@ $(document).ready(function(){
     var sampleAnswer =  answersArray[0];
     $("#player-one").text(player1Name);
     $("#player-two").text(player2Name);
+    $("#player-one-score").text(player1.score);
+    $("#player-two-score").text(player2.score);
+    $("#spin").show();
+    $("#playerEntryForm").hide();
+  });
+
+  $("#spin").click(function(){
+    wheel.spin(wheelWedges);
   });
 
   $("#letterEntryForm").submit(function(event){
 
   });
 
-  $("#spin").click(function(){
-    wheel.spin(wheelWedges);
-  });
+
 });
