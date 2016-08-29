@@ -12,7 +12,7 @@ function Player(name){
 function AnswerMaker (clue, answer){
   this.clue = clue;
   this.answer = answer;
-<<<<<<< HEAD
+
   this.answerSplit = answer.split("");
   this.hiddenArray = [];
 };
@@ -29,7 +29,7 @@ AnswerMaker.prototype.hideAnswer = function(){
 }
 
 var answersArray = []; ///answer objevts
-=======
+
   this.hiddenAnswerArray = [];
 
 };
@@ -45,7 +45,7 @@ var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
->>>>>>> master
+
 var answers = [["Food & Drink", "Fish And Chips"],["Pop Songs", "All My Single Ladies"],["Movies", "Gone With the Wind"]];
 
 answers.forEach(function(answer){
@@ -76,11 +76,11 @@ $(document).ready(function(){
   var wheel = new Wheel(wheelWedges);
   var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
-<<<<<<< HEAD
+
 wheel.spin(wheelWedges);
 
 var sampleAnswer =  answersArray[0];
-=======
+
   $("#letterEntryForm").submit(function(event){
 
   });
@@ -88,4 +88,3 @@ var sampleAnswer =  answersArray[0];
     wheel.spin(wheelWedges);
   });
 });
->>>>>>> master
