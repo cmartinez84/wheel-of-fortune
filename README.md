@@ -22,7 +22,7 @@ _No known bugs have been found to date._
 
 ## Support and contact details
 
-_Feel free to reach out to Larry Tunseth at larrydeantun@gmail.com or !EMAILS! with questions or concerns, or requests to work on this project yourself!_
+_Feel free to reach out to Larry Tunseth at larrydeantun@gmail.com, Ryan Vinyard at rav.ryanvinyard@gmail.com, Chris Martinez at cardamomclouds@yahoo.com, Blake Scala at blakescala@gmail.com, and/or Stephen Burden at spburden@hotmail.com with questions or concerns, or requests to work on this project yourself!_
 
 ## Technologies Used
 
@@ -34,9 +34,9 @@ _HTML, CSS, Bootstrap, JQuery, JavaScript_
 | --- | --- | --- |
 | Users can enter two player names |  Submit: Mike, Dave |  Player1: Mike, Player2: Dave |
 | A category/clue is displayed when game begins | Sumbit |  Category: "Best US Cities" |
-| Game displays phrase with letters hidden  | Phrase: "Portland, Oregon" |  Phrase: "________, ______" |
+| Game displays phrase with letters hidden  | Phrase: "Portland, Oregon" |  Phrase: "--------, ------" |
 | A player spins the wheel for a point value or bankrupt/lose a turn  | Spin the wheel  | Face Value: "$300"  |
-| A player guesses a consonant and its displayed on the board if correct | Guessed letter: R  | Phrase: "__r_____, _r____" |
+| A player guesses a consonant and its displayed on the board if correct | Guessed letter: R  | Phrase: "--r-----, -r----) |
 | Player is awarded the face value of the wheel for every letter guessed correctly | There's 2 R's | Mike's total points: $600 |
 | If a player guesses correctly they spin again. |  Mike was correct | Spin Again  |
 | A player is allowed to guess vowels for a charge of $250 | Guessed letter: I | There's no I's  | Mike's total points: $350 |
