@@ -41,7 +41,7 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
   if(this.guessedLetters.indexOf(letter) === -1){
     this.guessedLetters.push(letter);
   }
-  return occurrenceOfLetter.length * points
+  return occurrenceOfLetter.length * points;
 };
 
 AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
@@ -70,6 +70,7 @@ AnswerMaker.prototype.checkSolved = function(){
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
+
 var answers = [["Food & Drink", "fish and chips"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"]];
 
 answers.forEach(function(answer){
@@ -83,13 +84,34 @@ Wheel.prototype.spin = function(wedges){
   return spinOutput;
 };
 
-
+var sampleAnswer =  answersArray[0];
 //User Interface
 $(document).ready(function(){
   var wheel = new Wheel(wheelWedges);
   var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
   var player1;
   var player2;
+  for(var i = 0; i <sampleAnswer.hiddenArray.length; i++){
+    if((sampleAnswer.answerSplit[i] === " ") && (i % 15 ===0)){
+      $("#displayBoard").append('<br>');
+    }
+    if((sampleAnswer.answerSplit[i] === " ") && (i % 14 ===0)){
+      $("#displayBoard").append('<br>');
+    }
+    if((sampleAnswer.answerSplit[i] === " ") && (i % 16 ===0)){
+      $("#displayBoard").append('<br>');
+    }
+    if(sampleAnswer.hiddenArray[i] === " "){
+       $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
+    } ///display spaces
+    else{
+      $("#displayBoard").append('<span class="tiles" type="text" name="name">'+sampleAnswer.answerSplit[i].toUpperCase()+'</span>');
+    } ///display answer on board
+
+}
+
+//sampleAnswer.answerSplit.index()) <= 0
+
   $("#playerEntryForm").submit(function(event){
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
@@ -149,6 +171,3 @@ $(document).ready(function(){
 
 
 });
-
-
-var sampleAnswer =  answersArray[0];
