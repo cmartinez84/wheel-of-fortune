@@ -54,7 +54,7 @@ AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
     console.log("your phrase does not match. boo");
     //this will end players turn
   }
-}
+};
 
 AnswerMaker.prototype.checkSolved = function(){
   if (this.hiddenArray.indexOf("_") === -1){
@@ -63,7 +63,7 @@ AnswerMaker.prototype.checkSolved = function(){
   else{
     console.log("you aren't winning");
   }
-}
+};
 
 
 
@@ -123,7 +123,7 @@ $(document).ready(function(){
         //Go to guess board.
       }
     });
-  }
+  };
   var player2Turn = function(){
     $("button").off();
     $("#player-two").toggleClass("Selected");
@@ -141,7 +141,7 @@ $(document).ready(function(){
         //Go to guess board.
       }
     });
-  }
+  };
 
   $("#letterEntryForm").submit(function(event){
 
