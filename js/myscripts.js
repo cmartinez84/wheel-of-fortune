@@ -97,27 +97,32 @@ var spin = function(){
 
 var player1;
 var player2;
-var sampleAnswer =  answersArray[0];
+var getRandomAnswer = function(){
+   var randomNumber =Math.floor((Math.random() * 15) + 1);
+   return answersArray[randomNumber];
+};
+
 //User Interface
 $(document).ready(function(){
+ var generateBoard = function(randomAnswer){
+   for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
+     if((randomAnswer.answerSplit[i] === " ")&& ((randomAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
 
-  for(var i = 0; i <sampleAnswer.hiddenArray.length; i++){
-    if((sampleAnswer.answerSplit[i] === " ")&& ((sampleAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
+       $("#displayBoard").append('<br>');
+     }
+     if(randomAnswer.hiddenArray[i] === " "){
+        $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
+     } ///display spaces
+     else{
+       $("#displayBoard").append('<span class="tiles" type="text" name="name">'+randomAnswer.answerSplit[i].toUpperCase()+'</span>');
+     } ///display answer on board
+   }
+ }
 
-      $("#displayBoard").append('<br>');
-    }
-    if(sampleAnswer.hiddenArray[i] === " "){
-       $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
-    } ///display spaces
-    else{
-      $("#displayBoard").append('<span class="tiles" type="text" name="name">'+sampleAnswer.answerSplit[i].toUpperCase()+'</span>');
-    } ///display answer on board
-  }
-
-
-  //sampleAnswer.answerSplit.index()) <= 0
 
   $("#playerEntryForm").submit(function(event){
+    var randomAnswer = getRandomAnswer();
+    generateBoard(randomAnswer);
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
     var player2Name = $("input#player2Input").val();
@@ -152,7 +157,7 @@ $(document).ready(function(){
           event.preventDefault();
           var player1LetterGuess = $("input#letterEntryInput").val();
           player1LetterGuess = player1LetterGuess.toLowerCase();
-          sampleAnswer.letterCheck(player1LetterGuess, player1Spin);
+          randomAnswer.letterCheck(player1LetterGuess, player1Spin);
           player1Turn();
         });
       }
@@ -180,10 +185,9 @@ $(document).ready(function(){
         var player2LetterGuess = $("input#letterEntryInput").val();
         player2LetterGuess = player2LetterGuess.toLowerCase();
 
-        sampleAnswer.letterCheck(player2LetterGuess, player2Spin);
+        randomAnswer.letterCheck(player2LetterGuess, player2Spin);
         player2Turn();
       });
     });
   }
 });
-var sampleAnswer =  answersArray[0];
