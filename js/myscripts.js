@@ -129,6 +129,10 @@ $(document).ready(function(){
     var player2Name = $("input#player2Input").val();
     player1 = new Player(player1Name);
     player2 = new Player(player2Name);
+    $("#player-one").text(player1Name);
+    $("#player-two").text(player2Name);
+    $("#player-one-score").text(player1.score);
+    $("#player-two-score").text(player2.score);
     player1Turn();
   });
 
