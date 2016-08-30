@@ -41,9 +41,24 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
   if(this.guessedLetters.indexOf(letter) === -1){
     this.guessedLetters.push(letter);
   }
-  return occurrenceOfLetter.length * points;
+  if (/[aeiou]/.test(letter)){
+
+    return -250;
+
+  }
+  else{
+
+    return occurrenceOfLetter.length * points;
+  }
 };
 
+AnswerMaker.prototype.buyVowel = function(vowel){
+  if (/[aeiou]/.test(vowel)) {
+  this.letterCheck(vowel);
+
+  }
+
+}
 AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
   var guessString = guess.join("");
   var hiddenString = this.hiddenArray.join("");
