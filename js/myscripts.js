@@ -125,6 +125,7 @@ $(document).ready(function(){
       $("#letterEntryForm").submit(function(event){
         event.preventDefault();
         var player1LetterGuess = $("input#letterEntryInput").val();
+        player1LetterGuess = player1LetterGuess.toLowerCase();
         console.log(player1LetterGuess);
         console.log(player1Spin);
         sampleAnswer.letterCheck(player1LetterGuess, player1Spin);
@@ -150,6 +151,7 @@ $(document).ready(function(){
       $("#letterEntryForm").submit(function(event){
         event.preventDefault();
         var player2LetterGuess = $("input#letterEntryInput").val();
+        player2LetterGuess = player2LetterGuess.toLowerCase();
         console.log(player2LetterGuess);
         console.log(player2Spin);
         sampleAnswer.letterCheck(player2LetterGuess, player2Spin);
