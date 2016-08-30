@@ -118,10 +118,10 @@ $(document).ready(function(){
      } ///display answer on board
    }
  }
-
-  var randomAnswer;
+  var randomAnswer = getRandomAnswer();
+  // var randomAnswer;
   $("#playerEntryForm").submit(function(event){
-    randomAnswer = getRandomAnswer();
+    // randomAnswer = getRandomAnswer();
     generateBoard(randomAnswer);
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
@@ -169,6 +169,8 @@ $(document).ready(function(){
     $("#player-two").toggleClass("Selected");
     $("#player-one").toggleClass("Selected");
     $("#spin").click(function(){
+      console.log("this is player 2's spin" + player1Spin)
+
       player2Spin = spin(wheelWedges);
       $("#player-two-score").text(player2.score);
       console.log("2 " + player2Spin);
