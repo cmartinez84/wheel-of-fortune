@@ -5,3 +5,17 @@
 #spin {
   display: none;
 }
+.jumbotron{
+  background-color: lightblue;
+  border-bottom: 5px solid darkblue;
+}
+.jumbotron h1 {
+  font-size: 80px;
+  font-family: impact;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 10px darkblue;
+}
+.selected {
+  color: green;
+}
