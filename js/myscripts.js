@@ -41,7 +41,8 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
   if(this.guessedLetters.indexOf(letter) === -1){
     this.guessedLetters.push(letter);
   }
-  return occurrenceOfLetter.length * points
+  return occurrenceOfLetter.length * points;
+  console.log(occurrenceOfLetter.length * points);
 };
 
 AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
@@ -122,7 +123,11 @@ $(document).ready(function(){
         $("#letterEntryForm").show();
       }
       $("#letterEntryForm").submit(function(event){
-
+        event.preventDefault();
+        var player1LetterGuess = $("input#letterEntryInput").val();
+        console.log(player1LetterGuess);
+        console.log(player1Spin);
+        sampleAnswer.letterCheck(player1LetterGuess, player1Spin);
       });
     });
   }
@@ -133,7 +138,6 @@ $(document).ready(function(){
     $("#spin").click(function(){
       var player2Spin = wheel.spin(wheelWedges);
       $("#player-two-score").text(player2.score);
-      console.log(player2Spin);
       if (player2Spin === "Bankrupt"){
         player2.score = 0;
         player1Turn();
@@ -144,11 +148,14 @@ $(document).ready(function(){
         $("#letterEntryForm").show();
       }
       $("#letterEntryForm").submit(function(event){
-
+        event.preventDefault();
+        var player2LetterGuess = $("input#letterEntryInput").val();
+        console.log(player2LetterGuess);
+        console.log(player2Spin);
+        sampleAnswer.letterCheck(player2LetterGuess, player2Spin);
       });
     });
   }
 });
-
 
 var sampleAnswer =  answersArray[0];
