@@ -51,8 +51,6 @@ AnswerMaker.prototype.checkSolved = function(){
   }
 }
 
-
-
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
@@ -107,7 +105,11 @@ $(document).ready(function(){
         player2Turn();
       } else {
         //Go to guess board.
+        $("#letterEntryForm").show();
       }
+      $("#letterEntryForm").submit(function(event){
+
+      });
     });
   }
   var player2Turn = function(){
@@ -125,15 +127,13 @@ $(document).ready(function(){
         player1Turn();
       } else {
         //Go to guess board.
+        $("#letterEntryForm").show();
       }
+      $("#letterEntryForm").submit(function(event){
+
+      });
     });
   }
-
-  $("#letterEntryForm").submit(function(event){
-
-  });
-
-
 });
 
 
