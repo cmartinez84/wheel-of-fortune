@@ -41,6 +41,8 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
   if(this.guessedLetters.indexOf(letter) === -1){
     this.guessedLetters.push(letter);
   }
+  console.log(occurrenceOfLetter.length * points);
+  return occurrenceOfLetter.length * points;
   if (/[aeiou]/.test(letter)){
 
     return -250;
@@ -57,7 +59,6 @@ AnswerMaker.prototype.buyVowel = function(vowel){
   this.letterCheck(vowel);
 
   }
-
 }
 AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
   var guessString = guess.join("");
@@ -79,8 +80,6 @@ AnswerMaker.prototype.checkSolved = function(){
     console.log("you aren't winning");
   }
 }
-
-
 
 var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","t","v","w","x","y","z"];
 var vowels = ["a","e","i","o","u"];
@@ -120,7 +119,8 @@ $(document).ready(function(){
     } ///display answer on board
   }
 
-//sampleAnswer.answerSplit.index()) <= 0
+
+  //sampleAnswer.answerSplit.index()) <= 0
 
   $("#playerEntryForm").submit(function(event){
     event.preventDefault();
@@ -140,44 +140,52 @@ $(document).ready(function(){
   var player1Turn = function(){
     $("button").off();
     $("#player-one").toggleClass("Selected");
-    $("#player-one").toggleClass("Selected");
+    $("#player-two").toggleClass("Selected");
     $("#spin").click(function(){
       var player1Spin = wheel.spin(wheelWedges);
       $("#player-one-score").text(player1.score);
-      console.log(player1Spin);
-      console.log(player1.score);
+      console.log("1 " + player1Spin);
       if (player1Spin === "Bankrupt"){
         player1.score = 0;
         player2Turn();
       } else if (player1Spin === "Lose Turn"){
         player2Turn();
       } else {
-        //Go to guess board.
+        $("#letterEntryForm").show();
       }
+      $("#letterEntryForm").submit(function(event){
+        event.preventDefault();
+        var player1LetterGuess = $("input#letterEntryInput").val();
+        player1LetterGuess = player1LetterGuess.toLowerCase();
+        console.log(player1LetterGuess);
+        sampleAnswer.letterCheck(player1LetterGuess, player1Spin);
+      });
     });
   }
   var player2Turn = function(){
     $("button").off();
     $("#player-two").toggleClass("Selected");
-    $("#player-two").toggleClass("Selected");
+    $("#player-one").toggleClass("Selected");
     $("#spin").click(function(){
       var player2Spin = wheel.spin(wheelWedges);
       $("#player-two-score").text(player2.score);
-      console.log(player2Spin);
+      console.log("2 " + player2Spin);
       if (player2Spin === "Bankrupt"){
         player2.score = 0;
         player1Turn();
       } else if (player2Spin === "Lose Turn"){
         player1Turn();
       } else {
-        //Go to guess board.
+        $("#letterEntryForm").show();
       }
+      $("#letterEntryForm").submit(function(event){
+        event.preventDefault();
+        var player2LetterGuess = $("input#letterEntryInput").val();
+        player2LetterGuess = player2LetterGuess.toLowerCase();
+        console.log(player2LetterGuess);
+        sampleAnswer.letterCheck(player2LetterGuess, player2Spin);
+      });
     });
   }
-
-  $("#letterEntryForm").submit(function(event){
-
-  });
-
-
 });
+var sampleAnswer =  answersArray[0];
