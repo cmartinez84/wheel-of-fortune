@@ -8,11 +8,13 @@
     <title>Wheel of Fortune</title>
   </head>
   <body>
+
+    <div class="jumbotron">
+      <h1>Wheel of Fortune!</h1>
+    </div>
     <form id="displayBoard" action="index.html" method="post">
     </form>
     <div class="container">
-      <h1>Wheel of Fortune!</h1>
-
       <form id="playerEntryForm">
         <div class="form-group">
           <label for="player1Input">Enter Player 1's name</label>
@@ -42,6 +44,7 @@
           <label for="letterEntryInput">Enter a letter</label>
           <input type="text" class="form-control" required id="letterEntryInput">
           <button type="submit" class="btn btn-success">Submit</button>
+          <button id="solvePuzzle" class="btn btn-primary" type="button" name="button">I'd like to solve the puzzle!</button>
         </div>
       </form>
     </div>
