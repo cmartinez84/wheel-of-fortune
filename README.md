@@ -36,14 +36,14 @@ _HTML, CSS, Bootstrap, JQuery, JavaScript_
 | A category/clue is displayed when game begins | Sumbit |  Category: "Best US Cities" |
 | Game displays phrase with letters hidden  | Phrase: "Portland, Oregon" |  Phrase: "________, ______" |
 | A player spins the wheel for a point value or bankrupt/lose a turn  | Spin the wheel  | Face Value: "$300"  |
-| A player guesses a consonant and its displayed on the board if correct | Guessed letter: R  | Phrase: "__r_____, _r____ |
+| A player guesses a consonant and its displayed on the board if correct | Guessed letter: R  | Phrase: "__r_____, _r____" |
 | Player is awarded the face value of the wheel for every letter guessed correctly | There's 2 R's | Mike's total points: $600 |
 | If a player guesses correctly they spin again. |  Mike was correct | Spin Again  |
 | A player is allowed to guess vowels for a charge of $250 | Guessed letter: I | There's no I's  | Mike's total points: $350 |
 | If a player guesses incorrectly its player 2's turn | Mike was incorrect | Dave Spins |
 | If a player lands on "Lose a turn" their turn is over and it's the next players turn | Face Value: "Lose a Turn" | It's Mikes turn |
 | If a player lands on "Bankrupt" it wipes their total score and they lose their turn | Face Value: "Bankrupt" | Mike's total points: $0, it's Dave's turn|
-| If a player guesses the entire phrase they recieve $2,500 for each remaining letter | Guessed Phrase: "Portland, Oregon" | $27,500 |
+| If a player guesses the entire phrase they recieve $2,500 for each remaining letter | Guessed Phrase: "Portland, Oregon" | Dave's total points: $27,500 |
 ### License
 
 
