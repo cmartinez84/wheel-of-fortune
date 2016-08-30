@@ -1,7 +1,5 @@
 //Business Logic
-function Wheel (wedges){
-  this.wedges = wedges;
-}
+
 
 function Player(name){
   this.name = name;
@@ -41,15 +39,13 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
   if(this.guessedLetters.indexOf(letter) === -1){
     this.guessedLetters.push(letter);
   }
-  console.log(occurrenceOfLetter.length * points);
-  return occurrenceOfLetter.length * points;
+
   if (/[aeiou]/.test(letter)){
-
     return -250;
-
   }
   else{
-
+    console.log(points);
+    console.log(occurrenceOfLetter.length * points);
     return occurrenceOfLetter.length * points;
   }
 };
@@ -85,30 +81,29 @@ var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
-var answers = [["Food & Drink", "fish and chips and chips and chips and chips and chips and chips and chips"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"]];
+var answers = [["Food & Drink", "a bb ccc dddd ee f g h iii"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"]];
+var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
 answers.forEach(function(answer){
   var newAnswer = new AnswerMaker(answer[0],answer[1]);
   answersArray.push(newAnswer);
 });
 
-Wheel.prototype.spin = function(wedges){
+var spin = function(){
   var randomNumber = Math.floor((Math.random() * 23) + 1);
-  var spinOutput = wedges[randomNumber];
+  var spinOutput = wheelWedges[randomNumber];
   return spinOutput;
 };
 
+var player1;
+var player2;
 var sampleAnswer =  answersArray[0];
 //User Interface
 $(document).ready(function(){
-  var wheel = new Wheel(wheelWedges);
-  var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
-  var player1;
-  var player2;
 
   for(var i = 0; i <sampleAnswer.hiddenArray.length; i++){
     if((sampleAnswer.answerSplit[i] === " ")&& ((sampleAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
-      console.log("what happened");
+
       $("#displayBoard").append('<br>');
     }
     if(sampleAnswer.hiddenArray[i] === " "){
@@ -136,13 +131,14 @@ $(document).ready(function(){
     $("#playerEntryForm").hide();
     player1Turn();
   });
-
+  var player1Spin;
   var player1Turn = function(){
     $("button").off();
     $("#player-one").toggleClass("Selected");
     $("#player-two").toggleClass("Selected");
     $("#spin").click(function(){
-      var player1Spin = wheel.spin(wheelWedges);
+      player1Spin = spin(wheelWedges);
+      console.log("this is player 1's spin" + player1Spin)
       $("#player-one-score").text(player1.score);
       console.log("1 " + player1Spin);
       if (player1Spin === "Bankrupt"){
@@ -152,22 +148,23 @@ $(document).ready(function(){
         player2Turn();
       } else {
         $("#letterEntryForm").show();
+        $("#letterEntryForm").submit(function(event){
+          event.preventDefault();
+          var player1LetterGuess = $("input#letterEntryInput").val();
+          player1LetterGuess = player1LetterGuess.toLowerCase();
+          sampleAnswer.letterCheck(player1LetterGuess, player1Spin);
+          player1Turn();
+        });
       }
-      $("#letterEntryForm").submit(function(event){
-        event.preventDefault();
-        var player1LetterGuess = $("input#letterEntryInput").val();
-        player1LetterGuess = player1LetterGuess.toLowerCase();
-        console.log(player1LetterGuess);
-        sampleAnswer.letterCheck(player1LetterGuess, player1Spin);
-      });
-    });
+    })  ;
   }
+  var player2Spin;
   var player2Turn = function(){
     $("button").off();
     $("#player-two").toggleClass("Selected");
     $("#player-one").toggleClass("Selected");
     $("#spin").click(function(){
-      var player2Spin = wheel.spin(wheelWedges);
+      player2Spin = spin(wheelWedges);
       $("#player-two-score").text(player2.score);
       console.log("2 " + player2Spin);
       if (player2Spin === "Bankrupt"){
@@ -182,8 +179,9 @@ $(document).ready(function(){
         event.preventDefault();
         var player2LetterGuess = $("input#letterEntryInput").val();
         player2LetterGuess = player2LetterGuess.toLowerCase();
-        console.log(player2LetterGuess);
+
         sampleAnswer.letterCheck(player2LetterGuess, player2Spin);
+        player2Turn();
       });
     });
   }
