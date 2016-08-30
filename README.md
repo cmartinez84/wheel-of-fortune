@@ -1,4 +1,4 @@
-users can enter three names
+users can enter two names
 select avatar
 press submit
 clue pops up

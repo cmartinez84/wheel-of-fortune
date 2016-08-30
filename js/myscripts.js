@@ -7,8 +7,7 @@ function Player(name){
   this.name = name;
   this.score = 0;
   this.avatar = "";
-  this.spinNumber = spinNumber;
-  this.guess = guess;
+  // this.spinNumber = spinNumber;
 };
 
 function AnswerMaker (clue, answer){
@@ -80,19 +79,8 @@ answers.forEach(function(answer){
 
 Wheel.prototype.spin = function(wedges){
   var randomNumber = Math.floor((Math.random() * 23) + 1);
-  console.log(randomNumber);
   var spinOutput = wedges[randomNumber];
-  console.log(spinOutput);
-  if (spinOutput === "Bankrupt"){
-    player.score = 0;
-    //Change Player
-  } else if (spinOutput === "Lose Turn"){
-    //Change Player
-  } else {
-    return spinOutput;
-    //Change Player
-    console.log(spinOutput);
-  }
+  return spinOutput;
 };
 
 
@@ -100,29 +88,60 @@ Wheel.prototype.spin = function(wedges){
 $(document).ready(function(){
   var wheel = new Wheel(wheelWedges);
   var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
-
+  var player1;
+  var player2;
   $("#playerEntryForm").submit(function(event){
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
     var player2Name = $("input#player2Input").val();
-    console.log(player1Name);
-    console.log(player2Name);
-    var player1 = new Player(player1Name);
-    var player2 = new Player(player2Name);
+    player1 = new Player(player1Name);
+    player2 = new Player(player2Name);
     $("#player-one").text(player1Name);
     $("#player-two").text(player2Name);
     $("#player-one-score").text(player1.score);
     $("#player-two-score").text(player2.score);
     $("#spin").show();
     $("#playerEntryForm").hide();
+    player1Turn();
   });
 
-  $("#spin").click(function(){
-    wheel.spin(wheelWedges);
-    if (spinOutput === "Bankrupt") {
-    }
-  });
-
+  var player1Turn = function(){
+    $("button").off();
+    $("#player-one").toggleClass("Selected");
+    $("#player-one").toggleClass("Selected");
+    $("#spin").click(function(){
+      var player1Spin = wheel.spin(wheelWedges);
+      $("#player-one-score").text(player1.score);
+      console.log(player1Spin);
+      console.log(player1.score);
+      if (player1Spin === "Bankrupt"){
+        player1.score = 0;
+        player2Turn();
+      } else if (player1Spin === "Lose Turn"){
+        player2Turn();
+      } else {
+        //Go to guess board.
+      }
+    });
+  }
+  var player2Turn = function(){
+    $("button").off();
+    $("#player-two").toggleClass("Selected");
+    $("#player-two").toggleClass("Selected");
+    $("#spin").click(function(){
+      var player2Spin = wheel.spin(wheelWedges);
+      $("#player-two-score").text(player2.score);
+      console.log(player2Spin);
+      if (player2Spin === "Bankrupt"){
+        player2.score = 0;
+        player1Turn();
+      } else if (player2Spin === "Lose Turn"){
+        player1Turn();
+      } else {
+        //Go to guess board.
+      }
+    });
+  }
 
   $("#letterEntryForm").submit(function(event){
 
