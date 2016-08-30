@@ -119,9 +119,9 @@ $(document).ready(function(){
    }
  }
 
-
+  var randomAnswer;
   $("#playerEntryForm").submit(function(event){
-    var randomAnswer = getRandomAnswer();
+    randomAnswer = getRandomAnswer();
     generateBoard(randomAnswer);
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
