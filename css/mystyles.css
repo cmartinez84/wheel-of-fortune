@@ -1,7 +1,6 @@
 #letterEntryForm {
   display: none;
 }
-
 #spin {
   display: none;
 }
@@ -18,4 +17,21 @@
 }
 .selected {
   color: green;
+}
+.tiles{
+  border: 1px solid black;
+}
+.tiles, .blankSpace{
+  padding: 20px;
+  margin: 0.8%;
+  width: 5%;
+  display: inline-block;
+  text-align: center;
+  font-size: 3.3em;
+  padding-left: 5px;
+  line-height: 12px;
+  letter-spacing: 0px; }
+
+#displayBoard{
+  width:80%;
 }
