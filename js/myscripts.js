@@ -106,8 +106,9 @@ $(document).ready(function(){
   var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
   var player1;
   var player2;
+
   for(var i = 0; i <sampleAnswer.hiddenArray.length; i++){
-    if((sampleAnswer.answerSplit[i] === " ")&& ((sampleAnswer.answerSplit.indexOf(" ",  ) > ((Math.floor(i/15))*15)+15)))  {
+    if((sampleAnswer.answerSplit[i] === " ")&& ((sampleAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
       console.log("what happened");
       $("#displayBoard").append('<br>');
     }
@@ -117,8 +118,7 @@ $(document).ready(function(){
     else{
       $("#displayBoard").append('<span class="tiles" type="text" name="name">'+sampleAnswer.answerSplit[i].toUpperCase()+'</span>');
     } ///display answer on board
-
-}
+  }
 
 //sampleAnswer.answerSplit.index()) <= 0
 
