@@ -94,6 +94,12 @@ $(document).ready(function(){
     if((sampleAnswer.answerSplit[i] === " ") && (i % 15 ===0)){
       $("#displayBoard").append('<br>');
     }
+    if((sampleAnswer.answerSplit[i] === " ") && (i % 14 ===0)){
+      $("#displayBoard").append('<br>');
+    }
+    if((sampleAnswer.answerSplit[i] === " ") && (i % 16 ===0)){
+      $("#displayBoard").append('<br>');
+    }
     if(sampleAnswer.hiddenArray[i] === " "){
        $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
     } ///display spaces
