@@ -26,7 +26,7 @@ function AnswerMaker (clue, answer){
   this.wrongGuesses=[];
 };
 
-AnswerMaker.prototype.letterCheck = function(letter) {
+AnswerMaker.prototype.letterCheck = function(letter, points) {
   var occurrenceOfLetter = [];
   for(var i = 0; i < this.answerSplit.length; i ++){
     if((this.answerSplit[i] === letter) && this.guessedLetters.indexOf(letter) === -1){
@@ -41,7 +41,21 @@ AnswerMaker.prototype.letterCheck = function(letter) {
   if(this.guessedLetters.indexOf(letter) === -1){
     this.guessedLetters.push(letter);
   }
+  return occurrenceOfLetter.length * points
 };
+
+AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
+  var guessString = guess.join("");
+  var hiddenString = this.hiddenArray.join("");
+  if(guessString === this.answer){
+    return ((hiddenString.replace(/[^_]/g, "").length)*points);
+  }
+  else{
+    console.log("your phrase does not match. boo");
+    //this will end players turn
+  }
+}
+
 AnswerMaker.prototype.checkSolved = function(){
   if (this.hiddenArray.indexOf("_") === -1){
     alert("you are  a winner!");
