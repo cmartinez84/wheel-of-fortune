@@ -182,3 +182,86 @@ h1{
 #spinDiv, #letterDiv {
   display: none;
 }
+/*/////////animted lights//////*/
+body {
+  background: #000;
+}
+
+#wrapper {
+  margin: auto;
+  width: 945px;
+  background: url('https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash4/1012385_10151817242762214_1256830571_n.jpg') no-repeat;
+  background-size: 80%;
+  background-position: 50% 50%;
+  display: block;
+  transform: scale(4,4);
+  position: fixed;
+  top:0;
+  right:0;
+
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(ellipse at center, rgba(255,255,200,0.5) 30%,rgba(255,255,150,0.8) 100%);
+  border-radius: 100%;
+  position: relative;
+  animation: chase 600ms infinite;
+}
+
+li:before {
+  content: "";
+  display: block;
+  background: rgba(255,255,255,0.5);
+  width: 15px;
+  height: 15px;
+  border-radius: 20% 100%;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+
+li:nth-child(3n+1) {
+  animation-delay: 0s;
+}
+
+li:nth-child(3n+2) {
+  animation-delay: 200ms;
+}
+
+li:nth-child(3n+3) {
+  animation-delay: 400ms;
+}
+
+
+#bottom {
+  /*position: absolute;
+  bottom: 0;
+  right: 0;*/
+  /*transform: rotate(180deg);*/
+}
+
+#bottom li {
+  float: left;
+  margin-right: 5px;
+}
+
+
+@keyframes chase {
+  0% {
+    box-shadow: inset 0px 0px 40px 12px rgba(255,255,220,0.9),
+                      0px 0px 40px 10px rgba(255,255,190,0.9);
+  }
+  100% {
+    box-shadow: inset 0px 0px 0px 0px rgba(255,255,220,0),
+                      0px 0px 0px 0px rgba(255,255,190,0);
+  }
+}
