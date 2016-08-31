@@ -112,7 +112,7 @@ var getRandomAnswer = function(){
    return answersArray[randomNumber];
 };
 var randomAnswer = getRandomAnswer();
-var randomAnswer = answersArray[0];
+// var randomAnswer = answersArray[0];
 console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
