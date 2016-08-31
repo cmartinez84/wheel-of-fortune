@@ -53,7 +53,9 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
 AnswerMaker.prototype.buyVowel = function(vowel){
   if (/[aeiou]/.test(vowel)) {
   this.letterCheck(vowel);
-
+  }
+  else{
+    alert("choose a consonant");
   }
 }
 AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
@@ -104,7 +106,7 @@ var getRandomAnswer = function(){
 
 var randomAnswer = getRandomAnswer();
 
-//User Interface
+///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
  var generateBoard = function(randomAnswer){
    for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
@@ -162,8 +164,10 @@ $(document).ready(function(){
         else{
           player1Turn();
         }
-
     });
+    $("button#vowel").click(function(){
+
+    })
   }
 
   ////end player 1
