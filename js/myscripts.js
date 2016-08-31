@@ -113,26 +113,24 @@ var randomAnswer = getRandomAnswer();
 $(document).ready(function(){
  var generateBoard = function(randomAnswer){
    for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
-     if((randomAnswer.answerSplit[i] === " ")&& ((randomAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
-
-       $("#displayBoard").append('<br>');
-     }
+    //  if((randomAnswer.answerSplit[i] === " ")&& ((randomAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
+     //
+    //    $("#displayBoard").append('<br>');
+    //  }
      if(randomAnswer.hiddenArray[i] === " "){
         $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
      } ///display spaces
      else{
-       $("#displayBoard").append('<span id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.answerSplit[i].toUpperCase()+'</span>');
+       $("#displayBoard").append('<span id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.hiddenArray[i].toUpperCase()+'</span>');
      } ///display answer on board
    }
  }///end generarte Board function
  var changeBoard = function(){
     randomAnswer.occurenceArray.forEach(function(i){
-      $("#tile" + i).addClass("addBorder");
-    })
+      $("#tile" + i).text(randomAnswer.answerSplit[i]);
+    });
  }
- $("h1").click(function(){
-   changeBoard();
- })
+
   $("#playerEntryForm").submit(function(event){
     generateBoard(randomAnswer);
     event.preventDefault();
@@ -172,6 +170,7 @@ $(document).ready(function(){
         }
         else{
           player1Turn();
+          changeBoard();
         }
     });
     $("button#vowel").click(function(){
@@ -205,6 +204,7 @@ $(document).ready(function(){
         }
         else{
           player2Turn();
+          changeBoard();
         }
     });
   }////end player 1
