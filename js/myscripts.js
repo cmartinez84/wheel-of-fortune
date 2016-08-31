@@ -148,13 +148,15 @@ $(document).ready(function(){
   var player1Spin;
   var player1Turn = function(){
     $("button").off();
-    $("#player-one").toggleClass("Selected");
-    $("#player-two").toggleClass("Selected");
+    $("#player-one").toggleClass("selected");
+    $("#player-two").toggleClass("selected");
     $("#spin").click(function(){
       player1Spin = spin(wheelWedges);
+      $("span#currentSpin").text(player1Spin);
       console.log("this is player 1's spin" + player1Spin)
       if (player1Spin === "Bankrupt"){
         player1.score = 0;
+        $("player-one-score").text(player1.score);
         player2Turn();
       } else if (player1Spin === "Lose Turn"){
         player2Turn();
@@ -179,7 +181,6 @@ $(document).ready(function(){
     })
   }
 
-  ////end player 1
   var player2Spin;
   var player2Turn = function(){
     $("button").off();
@@ -187,9 +188,11 @@ $(document).ready(function(){
     $("#player-two").toggleClass("Selected");
     $("#spin").click(function(){
       player2Spin = spin(wheelWedges);
+      $("span#currentSpin").text(player2Spin);
       console.log("this is player 2's spin" + player2Spin)
       if (player2Spin === "Bankrupt"){
         player2.score = 0;
+        $("#player-two-score").text(player2.score);
         player1Turn();
       } else if (player2Spin === "Lose Turn"){
         player1Turn();
