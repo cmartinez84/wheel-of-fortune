@@ -2,6 +2,8 @@
 <html>
   <head>
     <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/animate.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/mystyles.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/mystyles.css" media="screen" title="no title" charset="utf-8">
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/myscripts.js"></script>
@@ -12,9 +14,12 @@
     <div class="jumbotron">
       <h1>Wheel of Fortune!</h1>
     </div>
-    <form id="displayBoard" action="index.html" method="post">
-    </form>
+
     <div class="container">
+      <div id="displayBoard" action="index.html" method="post">
+        <h2>CLUE:</h2>
+        <p id="clue">  </p>
+      </div>
       <form id="playerEntryForm">
         <div class="form-group">
           <label for="player1Input">Enter Player 1's name</label>
@@ -26,16 +31,18 @@
       </form>
 
       <div class="game-display">
-        <div class="row">
+        <p>Current Spin</p>
+        <p> $ <span id="currentSpin"></span> </p>
+        <!-- <div class="row">
           <div id=player1Screen class="col-md-6">
             <h2 id="player-one"></h2>
             <h2 id="player-one-score"></h2>
           </div>
           <div id=player1Screen class="col-md-6">
-            <h2 id="player-two"></h2>
+            <h2 id="player-two" class="selected "></h2>
             <h2 id="player-two-score"></h2>
           </div>
-        </div>
+        </div> -->
         <button class="btn btn-primary" id="spin" type="button" name="button">Spin!</button>
       </div>
 
@@ -49,6 +56,26 @@
           <button id="vowel" type="button" class="btn btn-success">Submit</button>
           <button id="solvePuzzle" class="btn btn-primary" type="button" name="button">I'd like to solve the puzzle!</button>
         </div>
+      </div>
+    </div>
+    <div id="playersAvatars">
+      <div id="player1" class="">
+        <p id="player-one"></p>
+        <p id="player-one-score"></p>
+        <img class="podium" src="img/podium1.gif" alt="" />
+        <img class="avatar rocko" src="img/rocko.png" alt="" />
+      </div>
+      <div id="player2" class="">
+        <p id="player-two"></p>
+        <p id="player-one-score"></p>
+        <img class="podium" src="img/podium2.gif" alt="" />
+        <img class="avatar hef" src="img/hef.png" alt="" />
+
+      </div>
+      <div id="player3" class="">
+        <img class="podium" src="img/podium3.gif" alt="" />
+        <img class="avatar spunky" src="img/Spunky.png" alt="" />
+
       </div>
     </div>
   </body>

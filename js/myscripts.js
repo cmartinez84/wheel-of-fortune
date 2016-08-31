@@ -22,6 +22,7 @@ function AnswerMaker (clue, answer){
   });
   this.guessedLetters=[];
   this.wrongGuesses=[];
+  this.occurenceArray;
 };
 
 AnswerMaker.prototype.letterCheck = function(letter, points) {
@@ -41,11 +42,13 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
   }
 
   if (/[aeiou]/.test(letter)){
+    this.occurenceArray = occurrenceOfLetter;
     return -250;
   }
   else{
     console.log(points);
     console.log(occurrenceOfLetter.length * points);
+    this.occurenceArray = occurrenceOfLetter;
     return occurrenceOfLetter.length * points;
   }
 };
@@ -103,28 +106,36 @@ var getRandomAnswer = function(){
    var randomNumber =Math.floor((Math.random() * 15) + 1);
    return answersArray[randomNumber];
 };
-
 var randomAnswer = getRandomAnswer();
+console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
  var generateBoard = function(randomAnswer){
    for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
-     if((randomAnswer.answerSplit[i] === " ")&& ((randomAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
-
-       $("#displayBoard").append('<br>');
-     }
+    //  if((randomAnswer.answerSplit[i] === " ")&& ((randomAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
+     //
+    //    $("#displayBoard").append('<br>');
+    //  }
      if(randomAnswer.hiddenArray[i] === " "){
         $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
      } ///display spaces
      else{
-       $("#displayBoard").append('<span class="tiles" type="text" name="name">'+randomAnswer.answerSplit[i].toUpperCase()+'</span>');
+       $("#displayBoard").append('<span id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.hiddenArray[i].toUpperCase()+'</span>');
      } ///display answer on board
    }
+   $("#clue").text(randomAnswer.clue);
+ }///end generarte Board function
+ var changeBoard = function(){
+    randomAnswer.occurenceArray.forEach(function(i){
+      $("#tile" + i).text(randomAnswer.answerSplit[i])
+      $("#tile" + i).addClass("animated bounceIn");
+
+    });
  }
-  // var randomAnswer;
+
   $("#playerEntryForm").submit(function(event){
-    // randomAnswer = getRandomAnswer();
+    $("#playersAvatars").addClass("translateAvatars");
     generateBoard(randomAnswer);
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
@@ -141,13 +152,15 @@ $(document).ready(function(){
   var player1Spin;
   var player1Turn = function(){
     $("button").off();
-    $("#player-one").toggleClass("Selected");
-    $("#player-two").toggleClass("Selected");
+    $("#player-one").toggleClass("selected");
+    $("#player-two").toggleClass("selected");
     $("#spin").click(function(){
       player1Spin = spin(wheelWedges);
+      $("span#currentSpin").text(player1Spin);
       console.log("this is player 1's spin" + player1Spin)
       if (player1Spin === "Bankrupt"){
         player1.score = 0;
+        $("player-one-score").text(player1.score);
         player2Turn();
       } else if (player1Spin === "Lose Turn"){
         player2Turn();
@@ -158,11 +171,13 @@ $(document).ready(function(){
         player1LetterGuess = player1LetterGuess.toLowerCase();
         var roundScore =randomAnswer.letterCheck(player1LetterGuess, player1Spin);
         player1.score += roundScore;
+        $("#player-one-score").text(player1.score);
         if(roundScore ===0){
           player2Turn();
         }
         else{
           player1Turn();
+          changeBoard();
         }
     });
     $("button#vowel").click(function(){
@@ -170,17 +185,18 @@ $(document).ready(function(){
     })
   }
 
-  ////end player 1
   var player2Spin;
   var player2Turn = function(){
     $("button").off();
-    $("#player-one").toggleClass("Selected");
-    $("#player-two").toggleClass("Selected");
+    $("#player-one").toggleClass("selected");
+    $("#player-two").toggleClass("selected");
     $("#spin").click(function(){
       player2Spin = spin(wheelWedges);
+      $("span#currentSpin").text(player2Spin);
       console.log("this is player 2's spin" + player2Spin)
       if (player2Spin === "Bankrupt"){
         player2.score = 0;
+        $("#player-two-score").text(player2.score);
         player1Turn();
       } else if (player2Spin === "Lose Turn"){
         player1Turn();
@@ -191,11 +207,14 @@ $(document).ready(function(){
         player2LetterGuess = player2LetterGuess.toLowerCase();
         var roundScore =randomAnswer.letterCheck(player2LetterGuess, player2Spin);
         player2.score += roundScore;
+        $("#player-two-score").text(player2.score);
+
         if(roundScore ===0){
           player1Turn();
         }
         else{
           player2Turn();
+          changeBoard();
         }
     });
   }////end player 1
