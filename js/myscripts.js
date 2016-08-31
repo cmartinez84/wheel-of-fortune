@@ -90,7 +90,7 @@ var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
 
-var answers = [["ada","ada"],["Food & Drink", "fish and chips"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"],["Things That Hurt", "broken femur"],["Cartoon Catchphrases", "eat my shorts"],["Food Containers", "soy sauce packet"],["Holliday Foods", "candy corn"],["Parenting Tools", "baby monitor"],["Winter Activities", "ice fishing"],["Things Matt Damon Said", "how do you like them apples"],["Good Times", "have a blast"],["Idioms", "chip off the old block"],["Famous Places", "the eiffel tower"]];
+var answers = [["Food & Drink", "fish and chips"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"],["Things That Hurt", "broken femur"],["Cartoon Catchphrases", "eat my shorts"],["Food Containers", "soy sauce packet"],["Holliday Foods", "candy corn"],["Parenting Tools", "baby monitor"],["Winter Activities", "ice fishing"],["Things Matt Damon Said", "how do you like them apples"],["Good Times", "have a blast"],["Idioms", "chip off the old block"],["Famous Places", "the eiffel tower"]];
 
 var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
@@ -112,16 +112,36 @@ var getRandomAnswer = function(){
    return answersArray[randomNumber];
 };
 var randomAnswer = getRandomAnswer();
-// var randomAnswer = answersArray[0];
+//var randomAnswer = answersArray[0];
 console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
 
  var generateBoard = function(randomAnswer){
+   var counter = 1;
    for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
-    //  if((randomAnswer.answerSplit[i] === " ")&& ((randomAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
-     //
+     var nextIndex = (((Math.floor(i/10))*10)+10);
+     var nextSpace1 = randomAnswer.answerSplit.indexOf(" ", i);
+     if(randomAnswer.answerSplit[i] === " "){
+       counter +=1;
+       if(counter % 2 === 0){
+          $("#displayBoard").append('<br>');
+       }
+     }
+    //  var spaceArray = [];
+    //  if ((randomAnswer.answerSplit[i]===" ")){
+    //    spaceArray.push(i);
+    //  }
+    //  for(var i = 0; i <spaceArray.length; i++){
+    //    if(i%2===0){
+    //    $("#displayBoard").append('<br>')
+    //    }
+    //  };
+    //  if((randomAnswer.answerSplit[i]===" ") && (nextSpace1 < nextIndex)) {
+    //    var nextSpace = randomAnswer.answerSplit.indexOf(" ", i);
+    //    console.log("this is the next space" + nextSpace);
+    //   //  console.log(((Math.floor(i/15))*15)+15);
     //    $("#displayBoard").append('<br>');
     //  }
      if(randomAnswer.hiddenArray[i] === " "){
