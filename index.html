@@ -16,15 +16,17 @@
       <h1>Wheel of Fortune!</h1>
     </div>
     <div class="col-md-4" id="sidebar">
-      <form id="playerEntryForm">
-        <div class="form-group">
-          <label for="player1Input">Enter Player 1's name</label>
-          <input type="text" class="form-control" required id="player1Input">
-          <label for="player2Input">Enter Player 2's name</label>
-          <input type="text" class="form-control" required id="player2Input">
-          <button type="submit" class="btn btn-info">Submit</button>
-        </div>
-      </form>
+      <div class="well">
+        <form id="playerEntryForm">
+          <div class="form-group">
+            <label for="player1Input">Enter Player 1's name</label>
+            <input type="text" class="form-control" required id="player1Input">
+            <label for="player2Input">Enter Player 2's name</label>
+            <input type="text" class="form-control" required id="player2Input">
+            <button type="submit" class="btn btn-info">Submit</button>
+          </div>
+        </form>
+      </div>
       <div id="wrongLetters">
         <p>Letters Guessed:</p>
         <p id="lettersGuessed"></p>
@@ -42,7 +44,7 @@
             <h2 id="player-two-score"></h2>
           </div>
         </div> -->
-        <button class="btn btn-primary" id="spin" type="button" name="button">Spin!</button>
+        <button class="btn btn-primary" id="spin" type="button" name="button">SPIN</button>
       </div>
 
       <div id="spinDiv">

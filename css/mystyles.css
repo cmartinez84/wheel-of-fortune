@@ -136,15 +136,40 @@ h1{
   padding-top: 75px;
   width: 400px;
   text-align: center;
+  font-size: 24px;
   }
-  #sidebar button{
+#sidebar button{
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+#sidebar input{
+  height: 55px;
+  font-size: 24px;
+}
 #mainDisplay {
   margin-left:30%;
   position: absolute;
+}
+.well {
+  background-color: #d31d00;
+  border: 2px solid black;
+}
+#spin {
+  width: 140px;
+  height: 70px;
+  background-image: url("../img/background.jpg");
+  background-size: 70%;
+  border: 3px solid black;
+  border-radius: 50px;
+  font-size: 30px;
+  font-weight: bolder;
+  text-shadow: 0 0 10px black;
+}
+.game-display, {
+  font-size: 24px;
+}
+#lettersGuessed {
+  margin-top: 0px;
 }
 #solve{
   letter-spacing: 20px;
