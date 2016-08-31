@@ -31,6 +31,7 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
     if((this.answerSplit[i] === letter) && this.guessedLetters.indexOf(letter) === -1){
       occurrenceOfLetter.push(i);
       this.hiddenArray[i] =letter;
+      this.checkSolved();
       console.log(letter);
     }
     else if((this.answerSplit.indexOf(letter) === -1)&&(this.wrongGuesses.indexOf(letter)) === -1){
@@ -43,6 +44,7 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
 
   if (/[aeiou]/.test(letter)){
     this.occurenceArray = occurrenceOfLetter;
+    this.checkSolved();
     return -250;
   }
   else{
@@ -86,7 +88,7 @@ var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
-var answers = [["Food & Drink", "a bb ccc dddd ee f g h iii"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"]];
+var answers = [["ada","ada"],["Food & Drink", "a bb ccc dddd ee f g h iii"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"]];
 var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
 answers.forEach(function(answer){
@@ -106,7 +108,8 @@ var getRandomAnswer = function(){
    var randomNumber =Math.floor((Math.random() * 15) + 1);
    return answersArray[randomNumber];
 };
-var randomAnswer = getRandomAnswer();
+// var randomAnswer = getRandomAnswer();
+var randomAnswer = answersArray[0];
 console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
