@@ -153,9 +153,17 @@ $(document).ready(function(){
       solveAttempt = solveAttempt + try1;
       if(solveAttempt.length === noSpaceAnswer.length){
         if(noSpaceAnswer === solveAttempt){
-          alert("hurray");
-          $(".tiles").addClass("selected");
+          // alert("hurray");
+          // $(".tiles").addClass("selected");
           player.score += (points * (noSpaceAnswer.length - hiddenString.length));
+          var compare1 = solveAttempt;
+          var compare2 = randomAnswer.answerSplit.join("");
+          if(compare1 === compare2){
+            $("input[id^='tile']").remove();
+            $("span").remove();
+            randomAnswer = getRandomAnswer();
+            generateBoard(randomAnswer);
+          }
         }
         else{
           alert("you suck");
@@ -168,7 +176,16 @@ $(document).ready(function(){
     }
   });
 }
-
+var roundOver = function(){
+  var compare1 = randomAnswer.hiddenArray.join("");
+  var compare2 = randomAnswer.answerSplit.join("");
+  if(compare1 === compare2){
+    $("input[id^='tile']").remove();
+    $("span").remove();
+    randomAnswer = getRandomAnswer();
+    generateBoard(randomAnswer);
+  }
+}
 
   $("#playerEntryForm").submit(function(event){
     $("#playersDiv").hide();
@@ -216,6 +233,7 @@ $(document).ready(function(){
       var roundScore =randomAnswer.letterCheck(player1LetterGuess, player1Spin);
       player1.score += roundScore;
       $("#player-one-score").text(player1.score);
+      roundOver();
       if(roundScore ===0){
         player2Turn();
       }
@@ -249,7 +267,7 @@ $(document).ready(function(){
     $("#spin").click(function(){
       player2Spin = spin(wheelWedges);
       $("span#currentSpin").text(player2Spin);
-      console.log("this is player 2's spin" + player2Spin)
+      console.log("this is player 2's spin" + player2Spin);
       if (player2Spin === "Bankrupt"){
         player2.score = 0;
         $("#player-two-score").text(player2.score);
