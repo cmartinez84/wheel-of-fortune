@@ -323,8 +323,8 @@ var roundOver = function(){
     });
     $("#finish").click(function(){
       idLikeToSolveThePuzzle(player2, player2Spin);
-      $("#spin").removeAttr("disabled");
-      $("#letterDiv").hide();
+      // $("#spin").removeAttr("disabled");
+      // $("#letterDiv").hide();
     });
   };
 });
