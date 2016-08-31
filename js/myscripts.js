@@ -106,8 +106,8 @@ var getRandomAnswer = function(){
    var randomNumber =Math.floor((Math.random() * 15) + 1);
    return answersArray[randomNumber];
 };
-
 var randomAnswer = getRandomAnswer();
+console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
@@ -165,6 +165,7 @@ $(document).ready(function(){
         player1LetterGuess = player1LetterGuess.toLowerCase();
         var roundScore =randomAnswer.letterCheck(player1LetterGuess, player1Spin);
         player1.score += roundScore;
+        $("#player-one-score").text(player1.score);
         if(roundScore ===0){
           player2Turn();
         }
@@ -199,6 +200,8 @@ $(document).ready(function(){
         player2LetterGuess = player2LetterGuess.toLowerCase();
         var roundScore =randomAnswer.letterCheck(player2LetterGuess, player2Spin);
         player2.score += roundScore;
+        $("#player-two-score").text(player2.score);
+
         if(roundScore ===0){
           player1Turn();
         }
