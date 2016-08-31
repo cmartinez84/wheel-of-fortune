@@ -202,6 +202,7 @@ $(document).ready(function(){
         player2Turn();
       } else if (player1Spin === "Lose Turn"){
         player2Turn();
+      }
     });
     $("#enterLetter").click(function(){
       var player1LetterGuess = $("input#letterEntryInput").val();
