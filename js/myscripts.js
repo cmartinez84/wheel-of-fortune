@@ -170,18 +170,19 @@ $(document).ready(function(){
       }
     });
     $("#enterLetter").click(function(){
-        var player1LetterGuess = $("input#letterEntryInput").val();
-        player1LetterGuess = player1LetterGuess.toLowerCase();
-        var roundScore =randomAnswer.letterCheck(player1LetterGuess, player1Spin);
-        player1.score += roundScore;
-        $("#player-one-score").text(player1.score);
-        if(roundScore ===0){
-          player2Turn();
-        }
-        else{
-          player1Turn();
-          changeBoard();
-        }
+      var player1LetterGuess = $("input#letterEntryInput").val();
+      player1LetterGuess = player1LetterGuess.toLowerCase();
+      $("#lettersGuessed").append(player1LetterGuess);
+      var roundScore =randomAnswer.letterCheck(player1LetterGuess, player1Spin);
+      player1.score += roundScore;
+      $("#player-one-score").text(player1.score);
+      if(roundScore ===0){
+        player2Turn();
+      }
+      else{
+        player1Turn();
+        changeBoard();
+      }
     });
     $("button#vowel").click(function(){
       var vowelInput = $("#vowelInput").val();
@@ -214,6 +215,7 @@ $(document).ready(function(){
     $("#enterLetter").click(function(){
         var player2LetterGuess = $("input#letterEntryInput").val();
         player2LetterGuess = player2LetterGuess.toLowerCase();
+        $("#lettersGuessed").append(player2LetterGuess);
         var roundScore =randomAnswer.letterCheck(player2LetterGuess, player2Spin);
         player2.score += roundScore;
         $("#player-two-score").text(player2.score);
