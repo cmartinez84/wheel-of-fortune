@@ -108,8 +108,8 @@ var getRandomAnswer = function(){
    var randomNumber =Math.floor((Math.random() * 15) + 1);
    return answersArray[randomNumber];
 };
-// var randomAnswer = getRandomAnswer();
-var randomAnswer = answersArray[0];
+var randomAnswer = getRandomAnswer();
+// var randomAnswer = answersArray[0];
 console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
