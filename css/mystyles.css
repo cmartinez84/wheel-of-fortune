@@ -92,3 +92,8 @@ body{
 .hef{
 height: 330px;
 }
+#solve{
+  letter-spacing: 20px;
+  font-size: 5em;
+  padding: 20px;
+}

@@ -88,7 +88,7 @@ var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
-var answers = [["ada","ada"],["Food & Drink", "a bb ccc dddd ee f g h iii"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"]];
+var answers = [["ad a","ad  a"],["Food & Drink", "a bb ccc dddd ee f g h iii"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"]];
 var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
 answers.forEach(function(answer){
@@ -108,12 +108,13 @@ var getRandomAnswer = function(){
    var randomNumber =Math.floor((Math.random() * 15) + 1);
    return answersArray[randomNumber];
 };
-var randomAnswer = getRandomAnswer();
-// var randomAnswer = answersArray[0];
+// var randomAnswer = getRandomAnswer();
+var randomAnswer = answersArray[0];
 console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
+
  var generateBoard = function(randomAnswer){
    for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
     //  if((randomAnswer.answerSplit[i] === " ")&& ((randomAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
@@ -124,18 +125,18 @@ $(document).ready(function(){
         $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
      } ///display spaces
      else{
-       $("#displayBoard").append('<span id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.hiddenArray[i].toUpperCase()+'</span>');
+       $("#displayBoard").append('<input disabled id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.hiddenArray[i].toUpperCase()+'</span>');
      } ///display answer on board
    }
    $("#clue").text(randomAnswer.clue);
  }///end generarte Board function
  var changeBoard = function(){
     randomAnswer.occurenceArray.forEach(function(i){
-      $("#tile" + i).text(randomAnswer.answerSplit[i])
+      $("#tile" + i).val(randomAnswer.answerSplit[i])
       $("#tile" + i).addClass("animated bounceIn");
-
     });
  }
+
 
   $("#playerEntryForm").submit(function(event){
     $("#playersAvatars").addClass("translateAvatars");
@@ -191,8 +192,21 @@ $(document).ready(function(){
       $("#player-one-score").text(player1.score);
       alert(roundScore);
     });
+    $("#finish").click(function(){
+      $("input[id^='tile']").removeAttr("disabled");
+      $("input[id^='tile']").keyup(function(){
+        var solveAttempt="";
+        var noSpaceAnswer = randomAnswer.answer.replace(/\s/g, '');
+        for(var i =0; i<randomAnswer.hiddenArray.length; i++){
+          var try1 = $("#tile"+i).val();
+          solveAttempt = solveAttempt + try1;
+          if(solveAttempt === noSpaceAnswer){
+            alert("hurray");
+          }
+        }
+      });
+    });
   }
-
 
   var player2Spin;
   var player2Turn = function(){
@@ -226,6 +240,17 @@ $(document).ready(function(){
           changeBoard();
         }
     });
-  }////end player 1
+    $("button#vowel").click(function(){
+      var vowelInput = $("#vowelInput").val();
+      var roundScore = randomAnswer.buyVowel(vowelInput);
+      changeBoard();
+      player2.score += roundScore;
+      $("#player-one-score").text(player2.score);
+      alert(roundScore);
+    });
+    $("#finish").click(function(){
+      $("input[id^='tile']").removeAttr("disabled");
+    });
+  }
 
 });
