@@ -12,8 +12,10 @@
     <div class="jumbotron">
       <h1>Wheel of Fortune!</h1>
     </div>
-    <form id="displayBoard" action="index.html" method="post">
-    </form>
+    <div id="displayBoard" action="index.html" method="post">
+      <h2>CLUE:</h2>
+      <p id="clue">  </p>
+    </div>
     <div class="container">
       <form id="playerEntryForm">
         <div class="form-group">
@@ -34,7 +36,7 @@
             <h2 id="player-one-score"></h2>
           </div>
           <div id=player1Screen class="col-md-6">
-            <h2 id="player-two"></h2>
+            <h2 id="player-two" class="selected"></h2>
             <h2 id="player-two-score"></h2>
           </div>
         </div>

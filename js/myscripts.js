@@ -124,6 +124,7 @@ $(document).ready(function(){
        $("#displayBoard").append('<span id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.hiddenArray[i].toUpperCase()+'</span>');
      } ///display answer on board
    }
+   $("#clue").text(randomAnswer.clue);
  }///end generarte Board function
  var changeBoard = function(){
     randomAnswer.occurenceArray.forEach(function(i){
