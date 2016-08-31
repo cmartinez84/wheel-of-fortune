@@ -105,7 +105,7 @@ var spin = function(){
 var player1;
 var player2;
 var getRandomAnswer = function(){
-   var randomNumber =Math.floor((Math.random() * 15) + 1);
+   var randomNumber =Math.floor((Math.random() * 25) + 1);
    return answersArray[randomNumber];
 };
 var randomAnswer = getRandomAnswer();
