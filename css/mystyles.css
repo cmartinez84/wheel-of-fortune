@@ -4,7 +4,10 @@ body {
   background-size: cover;
   color:white;
 }
-
+h1{
+  font-family: 'Monofett' !important;
+  font-size: 11em !important;
+}
 .jumbotron{
   background-image:url("../img/board5.jpg");
 }
@@ -147,4 +150,9 @@ body {
   letter-spacing: 20px;
   font-size: 5em;
   padding: 20px;
+}
+
+@font-face {
+    font-family: doublest;
+    src: url(../font/DOUBLEST.TTF);
 }
