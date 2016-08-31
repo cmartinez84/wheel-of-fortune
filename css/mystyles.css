@@ -5,8 +5,7 @@ body{
   color:white;
 }
 .jumbotron{
-  background-color: lightblue;
-  border-bottom: 5px solid darkblue;
+  background-image:url("../img/board5.jpg");
 }
 .jumbotron h1 {
   font-size: 80px;
@@ -14,9 +13,11 @@ body{
   text-align: center;
   color: white;
   text-shadow: 0 0 10px darkblue;
+  margin-left: 400px;
 }
 .selected {
   color: green;
+  margin: 0 auto;
 }
 .tiles{
   border: 1px solid black;
@@ -107,15 +108,15 @@ body{
   color: white;
   border: none;
   z-index: 99;
-  margin-top: 215px;
   padding-top: 75px;
-  border: 5px solid darkblue;
-  width: 300px;
+  width: 400px;
+  text-align: center;
+  }
+  #sidebar button{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #mainDisplay{
   margin-left:30%;
   position: absolute;
-}
-.container{
-  margin-left: 30%
 }
