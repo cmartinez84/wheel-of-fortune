@@ -31,3 +31,6 @@
 #displayBoard{
   width:80%;
 }
+.addBorder{
+  border: 4px solid black;
+}

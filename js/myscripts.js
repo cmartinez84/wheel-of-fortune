@@ -22,6 +22,7 @@ function AnswerMaker (clue, answer){
   });
   this.guessedLetters=[];
   this.wrongGuesses=[];
+  this.occurenceArray;
 };
 
 AnswerMaker.prototype.letterCheck = function(letter, points) {
@@ -41,11 +42,13 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
   }
 
   if (/[aeiou]/.test(letter)){
+    this.occurenceArray = occurrenceOfLetter;
     return -250;
   }
   else{
     console.log(points);
     console.log(occurrenceOfLetter.length * points);
+    this.occurenceArray = occurrenceOfLetter;
     return occurrenceOfLetter.length * points;
   }
 };
@@ -118,13 +121,19 @@ $(document).ready(function(){
         $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
      } ///display spaces
      else{
-       $("#displayBoard").append('<span class="tiles" type="text" name="name">'+randomAnswer.answerSplit[i].toUpperCase()+'</span>');
+       $("#displayBoard").append('<span id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.answerSplit[i].toUpperCase()+'</span>');
      } ///display answer on board
    }
+ }///end generarte Board function
+ var changeBoard = function(){
+    randomAnswer.occurenceArray.forEach(function(i){
+      $("#tile" + i).addClass("addBorder");
+    })
  }
-  // var randomAnswer;
+ $("h1").click(function(){
+   changeBoard();
+ })
   $("#playerEntryForm").submit(function(event){
-    // randomAnswer = getRandomAnswer();
     generateBoard(randomAnswer);
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
