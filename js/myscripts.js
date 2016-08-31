@@ -117,6 +117,7 @@ console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
+  $(".arrows").hide();
 
  var generateBoard = function(randomAnswer){
    for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
@@ -188,6 +189,7 @@ var roundOver = function(){
 }
 
   $("#playerEntryForm").submit(function(event){
+    $(".arrow1").toggle();
     $("#playersDiv").hide();
     $("#spinDiv").show();
     $("#playersAvatars").addClass("translateAvatars");
@@ -214,10 +216,14 @@ var roundOver = function(){
       $("span#currentSpin").text(player1Spin);
       console.log("this is player 1's spin" + player1Spin)
       if (player1Spin === "Bankrupt"){
+        $(".arrow1").toggle();
+        $(".arrow2").toggle();
         player1.score = 0;
         $("player-one-score").text(player1.score);
         player2Turn();
       } else if (player1Spin === "Lose Turn"){
+        $(".arrow1").toggle();
+        $(".arrow2").toggle();
         player2Turn();
       } else {
         $("#letterDiv").show();
@@ -235,6 +241,8 @@ var roundOver = function(){
       $("#player-one-score").text(player1.score);
       roundOver();
       if(roundScore ===0){
+        $(".arrow1").toggle();
+        $(".arrow2").toggle();
         player2Turn();
       }
       else{
@@ -269,10 +277,14 @@ var roundOver = function(){
       $("span#currentSpin").text(player2Spin);
       console.log("this is player 2's spin" + player2Spin);
       if (player2Spin === "Bankrupt"){
+        $(".arrow1").toggle();
+        $(".arrow2").toggle();
         player2.score = 0;
         $("#player-two-score").text(player2.score);
         player1Turn();
       } else if (player2Spin === "Lose Turn"){
+        $(".arrow1").toggle();
+        $(".arrow2").toggle();
         player1Turn();
       } else{
         $("#letterDiv").show();
@@ -289,6 +301,8 @@ var roundOver = function(){
       player2.score += roundScore;
       $("#player-two-score").text(player2.score);
       if(roundScore ===0){
+        $(".arrow1").toggle();
+        $(".arrow2").toggle();
         player1Turn();
       }
       else{
@@ -309,10 +323,8 @@ var roundOver = function(){
     });
     $("#finish").click(function(){
       idLikeToSolveThePuzzle(player2, player2Spin);
-      $("#spin").removeAttr("disabled");
-      $("#letterDiv").hide();
+      // $("#spin").removeAttr("disabled");
+      // $("#letterDiv").hide();
     });
   };
-
-
 });
