@@ -1,5 +1,7 @@
 body{
   background: black;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .jumbotron{
@@ -39,7 +41,7 @@ body{
   border: 4px solid black;
 }
 #displayBoard{
-  background: url('../img/board1.jpg');
+  background: url('../img/background.jpg');
   width: 1000px;
   text-align: center;
   height: 400px;
@@ -72,4 +74,21 @@ body{
 }
 .podium{
   margin-top: 100px;
+}
+#player-one, #player-two{
+  position: relative;
+  top: 223px;
+  left: 52px;
+  color: white;
+  font-size: 2em;
+}
+#player-one-score, #player-two-score{
+  position: relative;
+  top: 253px;
+  left: 52px;
+  color: white;
+  font-size: 2em;
+}
+.hef{
+height: 330px;
 }
