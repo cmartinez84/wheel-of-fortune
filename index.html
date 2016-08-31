@@ -27,35 +27,29 @@
           </div>
         </form>
       </div>
-      <div id="wrongLetters">
-        <p>Letters Guessed:</p>
-        <p id="lettersGuessed"></p>
-      </div>
-      <div class="game-display">
-        <p>Current Spin</p>
-        <p> $ <span id="currentSpin"></span> </p>
-        <!-- <div class="row">
-          <div id=player1Screen class="col-md-6">
-            <h2 id="player-one"></h2>
-            <h2 id="player-one-score"></h2>
-          </div>
-          <div id=player1Screen class="col-md-6">
-            <h2 id="player-two" class="selected "></h2>
-            <h2 id="player-two-score"></h2>
-          </div>
-        </div> -->
-        <button class="btn btn-primary" id="spin" type="button" name="button">SPIN</button>
+      <div class="well" id="wellsmith">
+        <div id="wrongLetters">
+          <p>Letters Guessed:</p>
+          <p id="lettersGuessed"></p>
+        </div>
+        <div class="game-display">
+          <p>Current Spin</p>
+          <p> $ <span id="currentSpin"></span> </p>
+          <button class="btn btn-primary" id="spin" type="button" name="button">SPIN</button>
+        </div>
       </div>
 
       <div id="spinDiv">
-        <div class="form-group">
-          <label for="letterEntryInput">Enter a letter</label>
-          <input type="text" class="form-control" required id="letterEntryInput">
-          <button id="enterLetter" type="button" class="btn btn-success">Submit</button>
-          <label for="letterEntryInput">Enter A Vowel</label>
-          <input type="text" class="form-control" required id="vowelInput">
-          <button id="vowel" type="button" class="btn btn-success">Submit</button>
-          <button id="finish" class="btn btn-primary" type="button">I'd like to solve the puzzle!</button>
+        <div class="well">
+          <div class="form-group">
+            <label for="letterEntryInput">Enter a letter</label>
+            <input type="text" class="form-control" required id="letterEntryInput" maxlength="1">
+            <button id="enterLetter" type="button" class="btn btn-success">Submit</button><br>
+            <label for="letterEntryInput">Enter A Vowel</label>
+            <input type="text" class="form-control" required id="vowelInput" maxlength="1">
+            <button id="vowel" type="button" class="btn btn-success">Submit</button><br>
+            <button id="finish" class="btn btn-primary" type="button">I'd like to solve the puzzle!</button>
+          </div>
         </div>
       </div>
     </div>
@@ -74,10 +68,9 @@
           </div>
           <div id="player2" class="">
             <p id="player-two"></p>
-            <p id="player-one-score"></p>
+            <p id="player-two-score"></p>
             <img class="podium" src="img/podium2.gif" alt="" />
             <img class="avatar hef" src="img/hef.png" alt="" />
-
           </div>
           <div id="player3" class="">
             <img class="podium" src="img/podium3.gif" alt="" />

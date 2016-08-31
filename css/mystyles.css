@@ -87,9 +87,9 @@ h1{
 
 #displayBoard {
   background: url('../img/board3.jpg');
-  width: 1000px;
+  width: 1200px;
   text-align: center;
-  height: 400px;
+  height: 500px;
   transform: skewX(1deg);
   transform: skewY(2deg);
   transform: rotateZ(5deg);
@@ -110,7 +110,7 @@ h1{
 
 #player-one, #player-two {
   position: relative;
-  top: 223px;
+  top: 320px;
   left: 52px;
   color: white;
   font-size: 2em;
@@ -118,12 +118,11 @@ h1{
 
 #player-one-score, #player-two-score {
   position: relative;
-  top: 253px;
+  top: 320px;
   left: 52px;
   color: white;
   font-size: 2em;
 }
-
 #sidebar {
   position: absolute;
   top: 0;
@@ -137,7 +136,7 @@ h1{
   width: 400px;
   text-align: center;
   font-size: 24px;
-  }
+}
 #sidebar button{
   margin-top: 10px;
   margin-bottom: 10px;
@@ -178,6 +177,6 @@ h1{
 }
 
 @font-face {
-    font-family: doublest;
-    src: url(../font/DOUBLEST.TTF);
+  font-family: doublest;
+  src: url(../font/DOUBLEST.TTF);
 }

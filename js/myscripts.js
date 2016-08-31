@@ -90,7 +90,7 @@ var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
 
-var answers = [["ada","ada"],["Food & Drink", "fish and chips"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"],["Things That Hurt", "broken femur"],["Cartoon Catchphrases", "Eat My Shorts"],["Food Containers", "soy sauce packet"],["Holliday Foods", "candy corn"],["Parenting Tools", "baby monitor"],["Winter Activities", "ice fishing"],["Things Matt Damon Said", "how do you like them apples"],["Good Times", "have a blast"],["Idioms", "chip off the old block"],["Famous Places", "the eiffel tower"]];
+var answers = [["ada","ada"],["Food & Drink", "fish and chips"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"],["Things That Hurt", "broken femur"],["Cartoon Catchphrases", "eat my shorts"],["Food Containers", "soy sauce packet"],["Holliday Foods", "candy corn"],["Parenting Tools", "baby monitor"],["Winter Activities", "ice fishing"],["Things Matt Damon Said", "how do you like them apples"],["Good Times", "have a blast"],["Idioms", "chip off the old block"],["Famous Places", "the eiffel tower"]];
 
 var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
@@ -112,7 +112,7 @@ var getRandomAnswer = function(){
    return answersArray[randomNumber];
 };
 var randomAnswer = getRandomAnswer();
-var randomAnswer = answersArray[0];
+// var randomAnswer = answersArray[0];
 console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
@@ -250,6 +250,9 @@ $(document).ready(function(){
     $("#enterLetter").click(function(){
         var player2LetterGuess = $("input#letterEntryInput").val();
         player2LetterGuess = player2LetterGuess.toLowerCase();
+        // if (player2LetterGuess === "a" ||player2LetterGuess === e ||player2LetterGuess === i ||player2LetterGuess === o ||player2LetterGuess === u){
+        //   alert("FUCK YOU");
+        // }
         $("#lettersGuessed").append(player2LetterGuess);
         var roundScore =randomAnswer.letterCheck(player2LetterGuess, player2Spin);
         player2.score += roundScore;
