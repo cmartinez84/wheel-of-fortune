@@ -128,11 +128,14 @@ $(document).ready(function(){
  }///end generarte Board function
  var changeBoard = function(){
     randomAnswer.occurenceArray.forEach(function(i){
-      $("#tile" + i).text(randomAnswer.answerSplit[i]);
+      $("#tile" + i).text(randomAnswer.answerSplit[i])
+      $("#tile" + i).addClass("animated bounceIn");
+
     });
  }
 
   $("#playerEntryForm").submit(function(event){
+    $("#playersAvatars").addClass("translateAvatars");
     generateBoard(randomAnswer);
     event.preventDefault();
     var player1Name = $("input#player1Input").val();
@@ -185,8 +188,8 @@ $(document).ready(function(){
   var player2Spin;
   var player2Turn = function(){
     $("button").off();
-    $("#player-one").toggleClass("Selected");
-    $("#player-two").toggleClass("Selected");
+    $("#player-one").toggleClass("selected");
+    $("#player-two").toggleClass("selected");
     $("#spin").click(function(){
       player2Spin = spin(wheelWedges);
       $("span#currentSpin").text(player2Spin);
