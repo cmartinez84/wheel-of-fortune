@@ -55,7 +55,7 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
 
 AnswerMaker.prototype.buyVowel = function(vowel){
   if (/[aeiou]/.test(vowel)) {
-  this.letterCheck(vowel);
+    return this.letterCheck(vowel);
   }
   else{
     alert("choose a consonant");
@@ -181,9 +181,15 @@ $(document).ready(function(){
         }
     });
     $("button#vowel").click(function(){
-
-    })
+      var vowelInput = $("#vowelInput").val();
+      var roundScore = randomAnswer.buyVowel(vowelInput);
+      changeBoard();
+      player1.score += roundScore;
+      $("#player-one-score").text(player1.score);
+      alert(roundScore);
+    });
   }
+
 
   var player2Spin;
   var player2Turn = function(){

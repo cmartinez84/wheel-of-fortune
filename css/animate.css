@@ -700,18 +700,23 @@
     -webkit-transform: scale3d(1.1, 1.1, 1.1);
     transform: scale3d(1.1, 1.1, 1.1);
     color: red;
+    transform: rotate(360deg);
+
   }
 
   40% {
     -webkit-transform: scale3d(.9, .9, .9);
     transform: scale3d(.9, .9, .9);
     color: red;
+    transform: rotate(360deg);
+
   }
 
   60% {
     opacity: 1;
     -webkit-transform: scale3d(1.03, 1.03, 1.03);
     transform: scale3d(1.43, 1.43, 1.43);
+    transform: rotate(360deg);
   }
 
   80% {
