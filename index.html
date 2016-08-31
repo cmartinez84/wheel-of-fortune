@@ -14,12 +14,7 @@
     <div class="jumbotron">
       <h1>Wheel of Fortune!</h1>
     </div>
-
-    <div class="container">
-      <div id="displayBoard" action="index.html" method="post">
-        <h2>CLUE:</h2>
-        <p id="clue">  </p>
-      </div>
+    <div class="col-md-4" id="sidebar">
       <form id="playerEntryForm">
         <div class="form-group">
           <label for="player1Input">Enter Player 1's name</label>
@@ -29,7 +24,10 @@
           <button type="submit" class="btn btn-info">Submit</button>
         </div>
       </form>
-
+      <div id="wrongLetters">
+        <p>Letters Guessed:</p>
+        <p id="lettersGuessed"></p>
+      </div>
       <div class="game-display">
         <p>Current Spin</p>
         <p> $ <span id="currentSpin"></span> </p>
@@ -58,24 +56,31 @@
         </div>
       </div>
     </div>
-    <div id="playersAvatars">
-      <div id="player1" class="">
-        <p id="player-one"></p>
-        <p id="player-one-score"></p>
-        <img class="podium" src="img/podium1.gif" alt="" />
-        <img class="avatar rocko" src="img/rocko.png" alt="" />
-      </div>
-      <div id="player2" class="">
-        <p id="player-two"></p>
-        <p id="player-one-score"></p>
-        <img class="podium" src="img/podium2.gif" alt="" />
-        <img class="avatar hef" src="img/hef.png" alt="" />
+    <div class="container" id="mainDisplay">
+      <div class="col-md-8">
+        <div id="displayBoard" action="index.html" method="post">
+          <h2>CLUE:</h2>
+          <p id="clue"></p>
+        </div>
+        <div id="playersAvatars">
+          <div id="player1" class="">
+            <p id="player-one"></p>
+            <p id="player-one-score"></p>
+            <img class="podium" src="img/podium1.gif" alt="" />
+            <img class="avatar rocko" src="img/rocko.png" alt="" />
+          </div>
+          <div id="player2" class="">
+            <p id="player-two"></p>
+            <p id="player-one-score"></p>
+            <img class="podium" src="img/podium2.gif" alt="" />
+            <img class="avatar hef" src="img/hef.png" alt="" />
 
-      </div>
-      <div id="player3" class="">
-        <img class="podium" src="img/podium3.gif" alt="" />
-        <img class="avatar spunky" src="img/Spunky.png" alt="" />
-
+          </div>
+          <div id="player3" class="">
+            <img class="podium" src="img/podium3.gif" alt="" />
+            <img class="avatar spunky" src="img/Spunky.png" alt="" />
+          </div>
+        </div>
       </div>
     </div>
   </body>

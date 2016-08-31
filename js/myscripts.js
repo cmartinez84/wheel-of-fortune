@@ -89,7 +89,9 @@ var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
-var answers = [["ad a","ad  a"],["Food & Drink", "a bb ccc dddd ee f g h iii"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"]];
+
+var answers = [["ada","ada"],["Food & Drink", "fish and chips"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"],["Things That Hurt", "broken femur"],["Cartoon Catchphrases", "Eat My Shorts"],["Food Containers", "soy sauce packet"],["Holliday Foods", "candy corn"],["Parenting Tools", "baby monitor"],["Winter Activities", "ice fishing"],["Things Matt Damon Said", "how do you like them apples"],["Good Times", "have a blast"],["Idioms", "chip off the old block"],["Famous Places", "the eiffel tower"]];
+
 var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
 answers.forEach(function(answer){
@@ -106,7 +108,7 @@ var spin = function(){
 var player1;
 var player2;
 var getRandomAnswer = function(){
-   var randomNumber =Math.floor((Math.random() * 15) + 1);
+   var randomNumber =Math.floor((Math.random() * 25) + 1);
    return answersArray[randomNumber];
 };
 var randomAnswer = getRandomAnswer();
@@ -201,18 +203,19 @@ $(document).ready(function(){
       }
     });
     $("#enterLetter").click(function(){
-        var player1LetterGuess = $("input#letterEntryInput").val();
-        player1LetterGuess = player1LetterGuess.toLowerCase();
-        var roundScore =randomAnswer.letterCheck(player1LetterGuess, player1Spin);
-        player1.score += roundScore;
-        $("#player-one-score").text(player1.score);
-        if(roundScore ===0){
-          player2Turn();
-        }
-        else{
-          player1Turn();
-          changeBoard();
-        }
+      var player1LetterGuess = $("input#letterEntryInput").val();
+      player1LetterGuess = player1LetterGuess.toLowerCase();
+      $("#lettersGuessed").append(player1LetterGuess);
+      var roundScore =randomAnswer.letterCheck(player1LetterGuess, player1Spin);
+      player1.score += roundScore;
+      $("#player-one-score").text(player1.score);
+      if(roundScore ===0){
+        player2Turn();
+      }
+      else{
+        player1Turn();
+        changeBoard();
+      }
     });
     $("button#vowel").click(function(){
       var vowelInput = $("#vowelInput").val();
@@ -247,6 +250,7 @@ $(document).ready(function(){
     $("#enterLetter").click(function(){
         var player2LetterGuess = $("input#letterEntryInput").val();
         player2LetterGuess = player2LetterGuess.toLowerCase();
+        $("#lettersGuessed").append(player2LetterGuess);
         var roundScore =randomAnswer.letterCheck(player2LetterGuess, player2Spin);
         player2.score += roundScore;
         $("#player-two-score").text(player2.score);
@@ -258,6 +262,7 @@ $(document).ready(function(){
           changeBoard();
         }
     });
+
     $("button#vowel").click(function(){
       var vowelInput = $("#vowelInput").val();
       var roundScore = randomAnswer.buyVowel(vowelInput);
@@ -269,6 +274,7 @@ $(document).ready(function(){
     $("#finish").click(function(){
       idLikeToSolveThePuzzle(player2, player2Spin)
     });
-  }
+  };
+
 
 });
