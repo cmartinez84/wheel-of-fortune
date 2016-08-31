@@ -122,10 +122,10 @@ $(document).ready(function(){
     //    $("#displayBoard").append('<br>');
     //  }
      if(randomAnswer.hiddenArray[i] === " "){
-        $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
+        $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'"></span>');
      } ///display spaces
      else{
-       $("#displayBoard").append('<input disabled id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.hiddenArray[i].toUpperCase()+'</span>');
+       $("#displayBoard").append('<input disabled id="tile'+ i +'" class="tiles" type="text" name="name">');
      } ///display answer on board
    }
    $("#clue").text(randomAnswer.clue);
@@ -200,8 +200,16 @@ $(document).ready(function(){
         for(var i =0; i<randomAnswer.hiddenArray.length; i++){
           var try1 = $("#tile"+i).val();
           solveAttempt = solveAttempt + try1;
-          if(solveAttempt === noSpaceAnswer){
-            alert("hurray");
+          if(solveAttempt.length === noSpaceAnswer.length){
+            if(noSpaceAnswer === solveAttempt){
+              alert("hurray");
+            }
+            else{
+              alert("you suck");
+              $("input[id^='tile']").remove();
+              generateBoard(randomAnswer);
+              changeBoard();
+            }
           }
         }
       });
