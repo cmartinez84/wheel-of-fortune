@@ -229,5 +229,4 @@ $(document).ready(function(){
         }
     });
   }////end player 1
-
 });
