@@ -1,8 +1,10 @@
 body {
-  background: black;
+  background: url('../img/grid.png') center center no-repeat !important;
   background-attachment: fixed;
   background-size: cover;
   color:white;
+  margin-bottom: 1000px !important;
+  margin-right: -54px;
 }
 h1{
   font-family: 'Monofett' !important;
@@ -183,9 +185,7 @@ h1{
   display: none;
 }
 /*/////////animted lights//////*/
-body {
-  background: #000;
-}
+
 
 #wrapper {
   margin: auto;
