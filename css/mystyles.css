@@ -23,7 +23,6 @@ h1{
 
 .selected {
   color: green;
-  margin: 0 auto;
 }
 
 .tiles {
@@ -179,4 +178,7 @@ h1{
 @font-face {
   font-family: doublest;
   src: url(../font/DOUBLEST.TTF);
+}
+#spinDiv, #letterDiv {
+  display: none;
 }
