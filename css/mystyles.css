@@ -168,3 +168,8 @@ body {
 #lettersGuessed {
   margin-top: 0px;
 }
+#solve{
+  letter-spacing: 20px;
+  font-size: 5em;
+  padding: 20px;
+}

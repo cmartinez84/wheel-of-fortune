@@ -23,6 +23,7 @@ function AnswerMaker (clue, answer){
   this.guessedLetters=[];
   this.wrongGuesses=[];
   this.occurenceArray;
+  this.solvedStatus = 1;
 };
 
 AnswerMaker.prototype.letterCheck = function(letter, points) {
@@ -63,17 +64,17 @@ AnswerMaker.prototype.buyVowel = function(vowel){
     alert("choose a consonant");
   }
 }
-AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
-  var guessString = guess.join("");
-  var hiddenString = this.hiddenArray.join("");
-  if(guessString === this.answer){
-    return ((hiddenString.replace(/[^_]/g, "").length)*points);
-  }
-  else{
-    console.log("your phrase does not match. boo");
-    //this will end players turn
-  }
-}
+// AnswerMaker.prototype.idLikeToSolveThePuzzle = function (guess, points){
+//   var guessString = guess.join("");
+//   var hiddenString = this.hiddenArray.join("");
+//   if(guessString === this.answer){
+//     return ((hiddenString.replace(/[^_]/g, "").length)*points);
+//   }
+//   else{
+//     console.log("your phrase does not match. boo");
+//     //this will end players turn
+//   }
+// }
 
 AnswerMaker.prototype.checkSolved = function(){
   if (this.hiddenArray.indexOf("_") === -1){
@@ -88,7 +89,9 @@ var consonants = ["b","c","d","f","g","h","j","k","l", "m","n","p","q","r","s","
 var vowels = ["a","e","i","o","u"];
 var answersArray = [];
 
+
 var answers = [["ada","ada"],["Food & Drink", "fish and chips"],["Pop Songs", "all the single ladies"],["Movies", "gone with the wind"],["Television Shows", "rick and morty"],["Types of Fish", "king salmon"],["American Actors", "matthew mcconaughey"],["Portland Places", "hollywood theatre"],["Portland Celebrities", "isaac brock"],["Fashion Designers", "yves saint laurent"],["Rare Elements", "neodymium"],["Microscopic Animals", "tardigrade"],["Programming Languages", "javascript"],["Portland Beers", "upheaval ipa"],["comic Books", "guardians of the galaxy"],["New Television Networks", "viceland"],["Things That Hurt", "broken femur"],["Cartoon Catchphrases", "Eat My Shorts"],["Food Containers", "soy sauce packet"],["Holliday Foods", "candy corn"],["Parenting Tools", "baby monitor"],["Winter Activities", "ice fishing"],["Things Matt Damon Said", "how do you like them apples"],["Good Times", "have a blast"],["Idioms", "chip off the old block"],["Famous Places", "the eiffel tower"]];
+
 var wheelWedges = [300, 900, "Bankrupt", 600, 500, 300, "Lose Turn", 800, 350, 450, 700, 300, "Bankrupt", 5000, 600, 500, 300, 750, 800, 550, 400, 300, 900, 500];
 
 answers.forEach(function(answer){
@@ -109,11 +112,12 @@ var getRandomAnswer = function(){
    return answersArray[randomNumber];
 };
 var randomAnswer = getRandomAnswer();
-// var randomAnswer = answersArray[0];
+var randomAnswer = answersArray[0];
 console.log(randomAnswer);
 
 ///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
+
  var generateBoard = function(randomAnswer){
    for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
     //  if((randomAnswer.answerSplit[i] === " ")&& ((randomAnswer.answerSplit.indexOf(" ",i  ) > ((Math.floor(i/15))*15)+15)))  {
@@ -121,21 +125,50 @@ $(document).ready(function(){
     //    $("#displayBoard").append('<br>');
     //  }
      if(randomAnswer.hiddenArray[i] === " "){
-        $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'">');
+        $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'"></span>');
      } ///display spaces
      else{
-       $("#displayBoard").append('<span id="tile'+ i +'" class="tiles" type="text" name="name">'+randomAnswer.hiddenArray[i].toUpperCase()+'</span>');
+       $("#displayBoard").append('<input disabled id="tile'+ i +'" class="tiles" type="text" name="name">');
      } ///display answer on board
    }
    $("#clue").text(randomAnswer.clue);
  }///end generarte Board function
  var changeBoard = function(){
     randomAnswer.occurenceArray.forEach(function(i){
-      $("#tile" + i).text(randomAnswer.answerSplit[i])
+      $("#tile" + i).val(randomAnswer.answerSplit[i])
       $("#tile" + i).addClass("animated bounceIn");
-
     });
  }
+ var idLikeToSolveThePuzzle = function(player, points){
+  $("input[id^='tile']").removeAttr("disabled");
+    var hiddenString = randomAnswer.hiddenArray.join("");
+    hiddenString = hiddenString.replace(/\s/g, '');
+    hiddenString= hiddenString.replace(/[_-]/g, "");
+    console.log(hiddenString);
+  $("input[id^='tile']").keyup(function(){
+    var solveAttempt="";
+    var noSpaceAnswer = randomAnswer.answer.replace(/\s/g, '');
+    for(var i =0; i<randomAnswer.hiddenArray.length; i++){
+      var try1 = $("#tile"+i).val();
+      solveAttempt = solveAttempt + try1;
+      if(solveAttempt.length === noSpaceAnswer.length){
+        if(noSpaceAnswer === solveAttempt){
+          alert("hurray");
+          $(".tiles").addClass("selected");
+          player.score += (points * (noSpaceAnswer.length - hiddenString.length));
+        }
+        else{
+          alert("you suck");
+          $("input[id^='tile']").remove();
+          generateBoard(randomAnswer);
+          changeBoard();
+          return "unsolved";
+        }
+      }
+    }
+  });
+}
+
 
   $("#playerEntryForm").submit(function(event){
     $("#playersAvatars").addClass("translateAvatars");
@@ -192,8 +225,10 @@ $(document).ready(function(){
       $("#player-one-score").text(player1.score);
       alert(roundScore);
     });
+    $("#finish").click(function(){
+      idLikeToSolveThePuzzle(player1, player1Spin)
+    });
   }
-
 
   var player2Spin;
   var player2Turn = function(){
@@ -219,7 +254,6 @@ $(document).ready(function(){
         var roundScore =randomAnswer.letterCheck(player2LetterGuess, player2Spin);
         player2.score += roundScore;
         $("#player-two-score").text(player2.score);
-
         if(roundScore ===0){
           player1Turn();
         }
@@ -228,5 +262,19 @@ $(document).ready(function(){
           changeBoard();
         }
     });
-  }////end player 1
+
+    $("button#vowel").click(function(){
+      var vowelInput = $("#vowelInput").val();
+      var roundScore = randomAnswer.buyVowel(vowelInput);
+      changeBoard();
+      player2.score += roundScore;
+      $("#player-one-score").text(player2.score);
+      alert(roundScore);
+    });
+    $("#finish").click(function(){
+      idLikeToSolveThePuzzle(player2, player2Spin)
+    });
+  };
+
+
 });
