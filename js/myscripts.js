@@ -171,6 +171,8 @@ $(document).ready(function(){
 
 
   $("#playerEntryForm").submit(function(event){
+    $("#playersDiv").hide();
+    $("#spinDiv").show();
     $("#playersAvatars").addClass("translateAvatars");
     generateBoard(randomAnswer);
     event.preventDefault();
@@ -200,7 +202,6 @@ $(document).ready(function(){
         player2Turn();
       } else if (player1Spin === "Lose Turn"){
         player2Turn();
-      }
     });
     $("#enterLetter").click(function(){
       var player1LetterGuess = $("input#letterEntryInput").val();
