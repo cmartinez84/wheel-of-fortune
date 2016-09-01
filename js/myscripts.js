@@ -5,6 +5,7 @@ function Player(name){
   this.name = name;
   this.score = 0;
   this.avatar = "";
+  this.spin;
   // this.spinNumber = spinNumber;
 };
 
@@ -226,28 +227,29 @@ var roundOver = function(){
     $("#player-two").text(player2Name);
     $("#player-one-score").text(player1.score);
     $("#player-two-score").text(player2.score);
-    player1Turn();
+    playerTurn(player1);
   });
 
-  var player1Spin;
-  var player1Turn = function(){
+  // var player1Spin;
+  var playerTurn = function(player, nextPlayer){
     $("button").off();
     $("#player-one").toggleClass("selected");
     $("#player-two").toggleClass("selected");
     $("#spin").click(function(){
-      player1Spin = spin(wheelWedges);
-      $("span#currentSpin").text(player1Spin);
-      console.log("this is player 1's spin" + player1Spin)
-      if (player1Spin === "Bankrupt"){
+      player.spin = spin(wheelWedges);
+      if(isNaN)
+      $("span#currentSpin").text(player.spin);
+      console.log("this is player 1's spin" + player.spin)
+      if (player.spin === "Bankrupt"){
         $(".arrow1").toggle();
         $(".arrow2").toggle();
-        player1.score = 0;
-        $("player-one-score").text(player1.score);
-        player2Turn();
-      } else if (player1Spin === "Lose Turn"){
+        player.score = 0;
+        $("player-one-score").text(player.score);
+        playerTurn(player2);
+      } else if (player.spin === "Lose Turn"){
         $(".arrow1").toggle();
         $(".arrow2").toggle();
-        player2Turn();
+        playerTurn(player2);
       } else {
         $("#letterDiv").show();
         $("#spin").attr("disabled","disabled");
@@ -256,20 +258,20 @@ var roundOver = function(){
     $("#enterLetter").click(function(){
       $("#letterDiv").hide();
       $("#spin").removeAttr("disabled");
-      var player1LetterGuess = $("input#letterEntryInput").val();
-      player1LetterGuess = player1LetterGuess.toLowerCase();
-      $("#lettersGuessed").append(player1LetterGuess);
-      var roundScore =randomAnswer.letterCheck(player1LetterGuess, player1Spin);
-      player1.score += roundScore;
-      $("#player-one-score").text(player1.score);
+      player.letterGuess = $("input#letterEntryInput").val();
+      player.letterGuess = player.letterGuess.toLowerCase();
+      $("#lettersGuessed").append(player.letterGuess);
+      var roundScore =randomAnswer.letterCheck(player.LetterGuess, player.spin);
+      player.score += roundScore;
+      $("#player-one-score").text(player.score);
       roundOver();
       if(roundScore ===0){
         $(".arrow1").toggle();
         $(".arrow2").toggle();
-        player2Turn();
+        playerTurn(player2);
       }
       else{
-        player1Turn();
+        playerTurn(player2);
         changeBoard();
       }
     });
@@ -279,13 +281,13 @@ var roundOver = function(){
       var vowelInput = $("#vowelInput").val();
       var roundScore = randomAnswer.buyVowel(vowelInput);
       changeBoard();
-      player1.score += roundScore;
-      $("#player-one-score").text(player1.score);
+      player.score += roundScore;
+      $("#player-one-score").text(player.score);
       alert(roundScore);
     });
     $("#finish").click(function(){
       $("#letterDiv").hide();
-      idLikeToSolveThePuzzle(player1, player1Spin);
+      idLikeToSolveThePuzzle(player1, player.spin);
       $("#spin").removeAttr("disabled");
     });
   }
