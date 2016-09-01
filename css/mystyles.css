@@ -75,7 +75,9 @@ li:nth-child(3n+3) {
 .tiles {
   border: 1px solid black;
   box-shadow: 2px 3px 4px 1px black;
-  background: white;
+  background: url("../img/dots.jpg") center center  no-repeat;
+  background-size: cover;
+
   vertical-align: top;
 }
 
@@ -90,6 +92,9 @@ li:nth-child(3n+3) {
   line-height: 12px;
   letter-spacing: 0px;
   vertical-align: top;
+}
+.tileFront{
+  background: white;
 }
 
 .addBorder {
@@ -165,7 +170,7 @@ font-size: 3em;
 }
 
 #displayBoard {
-  background: url('../img/board3.jpg');
+  background: url('../img/board4.jpg');
   width: 1200px;
   text-align: center;
   height: 500px;

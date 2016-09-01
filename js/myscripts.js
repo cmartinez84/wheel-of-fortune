@@ -119,7 +119,7 @@ $(document).ready(function(){
  var changeBoard = function(){
     randomAnswer.occurenceArray.forEach(function(i){
       $("#tile" + i).val(randomAnswer.answerSplit[i])
-      $("#tile" + i).addClass("animated bounceIn");
+      $("#tile" + i).addClass("animated bounceIn tileFront");
       var random1 = Math.floor(Math.random() * 35);
       var random2 = Math.floor(Math.random() * 35);
       $("tile" + i).addClass("animated hinge");
@@ -127,6 +127,7 @@ $(document).ready(function(){
  }
  var idLikeToSolveThePuzzle = function(player, points, nextPlayer){
   $("input[id^='tile']").removeAttr("disabled");
+  $("input[id^='tile']").addClass("tileFront");
     var hiddenString = randomAnswer.hiddenArray.join("");
     hiddenString = hiddenString.replace(/\s/g, '');
     hiddenString= hiddenString.replace(/[_-]/g, "");
