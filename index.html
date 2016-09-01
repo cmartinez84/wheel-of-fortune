@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <link href="https://fonts.googleapis.com/css?family=Monofett" rel="stylesheet">
@@ -6,47 +6,45 @@
     <link rel="stylesheet" href="css/animate.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/mystyles.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/mystyles.css" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/myscripts.js"></script>
     <title>Wheel o' Fortune</title>
   </head>
   <body>
-
     <div class="jumbotron">
       <div id="wrapper">
-
-  <ul id="bottom">
-    <li></li>
-    <li></li>
-    <li></li>
-     <li></li>
-    <li></li>
-     <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-
-</div>
+        <ul id="bottom">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
       <h1>Wheel o' Misfortune!</h1>
     </div>
     <div class="col-md-4" id="sidebar">
       <div class="well" id="playersDiv">
         <form id="playerEntryForm">
           <div class="form-group">
-            <label for="player1Input">Enter Player 1's name</label>
+            <label id="player1InputLabel" for="player1Input">Enter Player 1's name</label>
             <input type="text" class="form-control" required id="player1Input">
-            <label for="player2Input">Enter Player 2's name</label>
+            <label id="player2InputLabel" for="player2Input">Enter Player 2's name</label>
             <input type="text" class="form-control" required id="player2Input">
-            <button type="submit" class="btn btn-info">Submit</button>
+            <button id="playerFormSubmit" type="submit" class="btn btn-info">Submit</button>
           </div>
         </form>
       </div>
@@ -56,22 +54,21 @@
           <p id="lettersGuessed"></p>
         </div>
         <div class="game-display">
-          <p>Current Spin</p>
-          <p class="scoreGlow"> $  </p>
+          <p id="spinText">Current Spin</p>
+          <p class="scoreGlow"></p>
           <button class="btn btn-primary" id="spin" type="button" name="button">SPIN</button>
         </div>
       </div>
-
       <div id="letterDiv">
         <div class="well">
           <div class="form-group">
-            <label for="letterEntryInput">Enter a letter</label>
+            <label id="letterEntryLabel" for="letterEntryInput">Enter a letter</label>
             <input type="text" class="form-control" required id="letterEntryInput" maxlength="1">
             <button id="enterLetter" type="button" class="btn btn-success">Submit</button><br>
-            <label for="letterEntryInput">Enter A Vowel</label>
-            <input type="text" class="form-control" required id="vowelInput" maxlength="1">
-            <button id="vowel" type="button" class="btn btn-success">Submit</button><br>
             <button id="finish" class="btn btn-primary" type="button">I'd like to solve the puzzle!</button>
+            <p id="vowelInfo">
+              Guessing a vowel costs $250.<br> No points are rewarded for guessing a vowel.
+            </p>
           </div>
         </div>
       </div>
@@ -85,14 +82,14 @@
         <div id="playersAvatars">
           <div id="player1" class="">
             <p id="player-one"></p>
-            <img class="arrows arrow1 initHide" src="img/arrow.gif"/>
+            <img class="arrows arrow1 initHide" src="img/arrow.gif" />
             <p id="player-one-score"></p>
             <img class="podium" src="img/podium1.gif" alt="" />
             <img class="avatar rocko" src="img/rocko.png" alt="" />
           </div>
           <div id="player2" class="">
             <p id="player-two"></p>
-              <img class="arrows arrow2 initHide" src="img/arrow.gif"/>
+            <img class="arrows arrow2 initHide" src="img/arrow.gif" />
             <p id="player-two-score"></p>
             <img class="podium" src="img/podium2.gif" alt="" />
             <img class="avatar hef" src="img/hef.png" alt="" />

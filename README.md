@@ -39,7 +39,7 @@ _HTML, CSS, Bootstrap, JQuery, JavaScript_
 | A player guesses a consonant and its displayed on the board if correct | Guessed letter: "R"  | Phrase: "--r-----, -r----) |
 | Player is awarded the face value of the wheel for every letter guessed correctly | There's 2 R's | Mike's total points: $600 |
 | If a player guesses correctly they spin again. |  Mike was correct | Spin Again  |
-| A player is allowed to guess vowels for a charge of $250 | Guessed letter: "I" | There's no I's  | Mike's total points: $350 |
+| A player is allowed to guess vowels for a charge of $250 | Guessed letter: "I" | There's no I's, Mike's total points: $350 |
 | If a player guesses incorrectly its player 2's turn | Mike was incorrect | Dave Spins |
 | If a player lands on "Lose a turn" their turn is over and it's the next players turn | Face Value: "Lose a Turn" | It's Mikes turn |
 | If a player lands on "Bankrupt" it wipes their total score and they lose their turn | Face Value: "Bankrupt" | Mike's total points: $0, it's Dave's turn|
