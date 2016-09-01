@@ -157,7 +157,8 @@ font-size: 3em;
 
 .rotate {
   transform: rotate(1440deg);
-  transition: 2s;
+  transition: all 2s;
+
 }
 
 #displayBoard h2, #clue {

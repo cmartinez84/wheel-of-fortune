@@ -83,6 +83,7 @@ var randomAnswer = getRandomAnswer();
 
 ///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
+
   $(".arrows").hide();
   var updateScores = function(){
   if(isNaN(player1.score)){
@@ -144,6 +145,8 @@ $(document).ready(function(){
           // alert("hurray");
           // $(".tiles").addClass("selected");
           player.score += (points * (noSpaceAnswer.length - hiddenString.length));
+            $("h1").addClass("animated hinge");
+
             $("input[id^='tile']").remove();
             $(".blankSpace").remove();
             $("br").remove();
