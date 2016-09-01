@@ -23,7 +23,7 @@ function AnswerMaker (clue, answer){
   });
   this.guessedLetters=[];
   this.wrongGuesses=[];
-  this.occurenceArray;
+  this.occurenceArray=[];
   this.solvedStatus = 1;
 };
 
@@ -113,6 +113,7 @@ var getRandomAnswer = function(){
    return answersArray[randomNumber];
 };
 var randomAnswer = getRandomAnswer();
+
 //var randomAnswer = answersArray[0];
 console.log(randomAnswer);
 
@@ -162,7 +163,7 @@ var updateScores = function(){
         $("#displayBoard").append('<span class="blankSpace" type="text" name="name" id="tile'+ i +'"></span>');
      } ///display spaces
      else{
-       $("#displayBoard").append('<input disabled id="tile'+ i +'" class="tiles" type="text" name="name">');
+       $("#displayBoard").append('<input maxlength="1" disabled id="tile'+ i +'" class="tiles" type="text" name="name">');
      } ///display answer on board
    }
    $("#clue").text(randomAnswer.clue);
@@ -176,7 +177,7 @@ var updateScores = function(){
       $("tile" + i).addClass("animated hinge");
     });
  }
- var idLikeToSolveThePuzzle = function(player, points){
+ var idLikeToSolveThePuzzle = function(player, points, nextPlayer){
   $("input[id^='tile']").removeAttr("disabled");
     var hiddenString = randomAnswer.hiddenArray.join("");
     hiddenString = hiddenString.replace(/\s/g, '');
@@ -193,21 +194,27 @@ var updateScores = function(){
           // alert("hurray");
           // $(".tiles").addClass("selected");
           player.score += (points * (noSpaceAnswer.length - hiddenString.length));
-          var compare1 = solveAttempt;
-          var compare2 = randomAnswer.answerSplit.join("");
-          if(compare1 === compare2){
             $("input[id^='tile']").remove();
             $(".blankSpace").remove();
+            $("br").remove();
+            randomAnswer = "";
             randomAnswer = getRandomAnswer();
             generateBoard(randomAnswer);
-          }
+            console.log("somebody won");
+            updateScores();
+            playerTurn(player);
+            return;
         }
         else{
-          alert("you suck");
+          
+          alert("haha, you need to refresh the page");
           $("input[id^='tile']").remove();
           generateBoard(randomAnswer);
           changeBoard();
-          return "unsolved";
+          console.log(solveAttempt+ "from ELSE");
+          updateScores();
+          playerTurn(nextPlayer);
+          return;
         }
       }
     }
@@ -219,6 +226,8 @@ var updateScores = function(){
   if(compare1 === compare2){
     $("input[id^='tile']").remove();
     $(".blankSpace").remove();
+    $("br").remove();
+    randomAnswer = "";
     randomAnswer = getRandomAnswer();
     generateBoard(randomAnswer);
     $("#lettersGuessed").remove();
@@ -248,6 +257,7 @@ var updateScores = function(){
 
 
   var playerTurn = function(player){
+    updateScores();
     $("button").off();
     var nextPlayer="";
     if( player === player1){
@@ -304,7 +314,9 @@ var updateScores = function(){
       $("#finish").click(function(){
         $(this).off();
         $("#letterDiv").hide();
-        idLikeToSolveThePuzzle(player, playerSpin);
+        var getPlayerScore = player.score;
+        console.log("what is players score"+getPlayerScore);
+        idLikeToSolveThePuzzle(player, playerSpin, nextPlayer);
         $("#spin").removeAttr("disabled");
       });
 
