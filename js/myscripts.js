@@ -112,6 +112,8 @@ $(document).ready(function(){
      } ///display spaces
      else{
        $("#displayBoard").append('<input maxlength="1" disabled id="tile'+ i +'" class="tiles" type="text" name="name">');
+       var degree = Math.round( Math.random() * 30 );
+       $("#tile" + i).css({transform: 'rotate(' + degree + 'deg)'});
      } ///display answer on board
    }
    $("#clue").text(randomAnswer.clue);
