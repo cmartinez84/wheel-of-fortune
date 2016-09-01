@@ -121,6 +121,14 @@ $(document).ready(function(){
   $(".arrows").hide();
 
 var updateScores = function(){
+  if(isNaN(player1.score)){
+    player1.score = 0;
+    alert("was not a number player 1");
+  }
+  if(isNaN(player2.score)){
+    player2.score = 0;
+    alert("was not a number player 2");
+  }
   $("#player-one-score").text(player1.score);
   $("#player-two-score").text(player2.score);
 }
@@ -255,12 +263,14 @@ var updateScores = function(){
       console.log(playerSpin);
       $("span#currentSpin").text(playerSpin);
       if (playerSpin === "Bankrupt"){
+        var playerSpin =0;
         $(".arrow1").toggle();
         $(".arrow2").toggle();
         player.score = 0;
         updateScores();
         playerTurn(nextPlayer);
       } else if (playerSpin === "Lose Turn"){
+        var playerSpin =0;
         $(".arrow1").toggle();
         $(".arrow2").toggle();
         playerTurn(nextPlayer);
