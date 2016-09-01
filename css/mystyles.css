@@ -76,6 +76,7 @@ li:nth-child(3n+3) {
   border: 1px solid black;
   box-shadow: 2px 3px 4px 1px black;
   background: white;
+  vertical-align: top;
 }
 
 .tiles, .blankSpace {
@@ -88,6 +89,7 @@ li:nth-child(3n+3) {
   padding-left: 5px;
   line-height: 12px;
   letter-spacing: 0px;
+  vertical-align: top;
 }
 
 .addBorder {
