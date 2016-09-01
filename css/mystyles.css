@@ -295,3 +295,29 @@ font-size: 3em;
 canvas{
   z-index: 99999;
 }
+#wrongLetters, #spinText, #letterDiv, #playerEntryForm{
+  font-family: 'Russo One', sans-serif;
+  font-weight: 100;
+}
+#letterEntryLabel{
+  font-size: 32px;
+}
+#playerFormSubmit, #enterLetter {
+  width:100px;
+  height: 50px;
+  font-size: 22px;
+  text-align: center;
+  background-image:url("../img/board5.jpg");
+  background-size: 50%;
+  border:2px solid black;
+  text-shadow: 0 0 10px black;
+}
+#finish {
+  width: 325px;
+  height: 50px;
+  font-size: 21px;
+  background-image:url("../img/board6.jpg");
+  background-size: 75%;
+  text-shadow: 0 0 10px black;
+  border:2px solid black;
+}

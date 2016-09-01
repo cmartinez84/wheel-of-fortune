@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/animate.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/mystyles.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/mystyles.css" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/myscripts.js"></script>
     <title>Wheel o' Fortune</title>
@@ -42,11 +43,11 @@
       <div class="well" id="playersDiv">
         <form id="playerEntryForm">
           <div class="form-group">
-            <label for="player1Input">Enter Player 1's name</label>
+            <label id="player1InputLabel" for="player1Input">Enter Player 1's name</label>
             <input type="text" class="form-control" required id="player1Input">
-            <label for="player2Input">Enter Player 2's name</label>
+            <label id="player2InputLabel" for="player2Input">Enter Player 2's name</label>
             <input type="text" class="form-control" required id="player2Input">
-            <button type="submit" class="btn btn-info">Submit</button>
+            <button id="playerFormSubmit" type="submit" class="btn btn-info">Submit</button>
           </div>
         </form>
       </div>
@@ -56,7 +57,7 @@
           <p id="lettersGuessed"></p>
         </div>
         <div class="game-display">
-          <p>Current Spin</p>
+          <p id="spinText">Current Spin</p>
           <p class="scoreGlow"></p>
           <button class="btn btn-primary" id="spin" type="button" name="button">SPIN</button>
         </div>
@@ -65,13 +66,13 @@
       <div id="letterDiv">
         <div class="well">
           <div class="form-group">
-            <label for="letterEntryInput">Enter a letter</label>
+            <label id="letterEntryLabel" for="letterEntryInput">Enter a letter</label>
             <input type="text" class="form-control" required id="letterEntryInput" maxlength="1">
             <button id="enterLetter" type="button" class="btn btn-success">Submit</button><br>
-            <label for="letterEntryInput">Enter A Vowel</label>
-            <input type="text" class="form-control" required id="vowelInput" maxlength="1">
-            <button id="vowel" type="button" class="btn btn-success">Submit</button><br>
             <button id="finish" class="btn btn-primary" type="button">I'd like to solve the puzzle!</button>
+            <p id="vowelInfo">
+              Guessing a vowel costs $250.<br> No points are rewarded for guessing a vowel.
+            </p>
           </div>
         </div>
       </div>
