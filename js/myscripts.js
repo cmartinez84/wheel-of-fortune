@@ -158,6 +158,9 @@ $(document).ready(function(){
     randomAnswer.occurenceArray.forEach(function(i){
       $("#tile" + i).val(randomAnswer.answerSplit[i])
       $("#tile" + i).addClass("animated bounceIn");
+      var random1 = Math.floor(Math.random() * 35);
+      var random2 = Math.floor(Math.random() * 35);
+      $("tile" + i).addClass("animated hinge");
     });
  }
  var idLikeToSolveThePuzzle = function(player, points){

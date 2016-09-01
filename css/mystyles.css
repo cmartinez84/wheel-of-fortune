@@ -1,17 +1,16 @@
 body {
-  background: url('../img/grid.png') center center no-repeat !important;
-  background-attachment: fixed;
+  background: url("../img/grid.png") center center no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   color:white;
-  margin-bottom: 1000px !important;
-  margin-right: -54px;
 }
 h1{
   font-family: 'Monofett' !important;
   font-size: 11em !important;
 }
 .jumbotron{
-  background-image:url("../img/board5.jpg");
+  /*background-image:url("../img/board5.jpg");*/
+  background: transparent !important;
 }
 
 .jumbotron h1 {
@@ -84,6 +83,7 @@ h1{
   font-weight: bolder;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
+
 }
 
 #displayBoard {
@@ -95,6 +95,7 @@ h1{
   transform: skewY(2deg);
   transform: rotateZ(5deg);
   color:black;
+  box-shadow: 10px 10px 5px 3px white;
 }
 
 #playersAvatars {
@@ -129,7 +130,7 @@ h1{
   top: 0;
   left:0;
   height: 100%;
-  background: slategrey;
+  background: rgba(57, 255, 20, 0.5);
   color: white;
   border: none;
   z-index: 99;
@@ -151,7 +152,7 @@ h1{
   position: absolute;
 }
 .well {
-  background-color: #d31d00;
+  background-color:rgba(255, 0, 0, 0.5);;
   border: 2px solid black;
 }
 #spin {
@@ -183,6 +184,10 @@ h1{
 }
 #spinDiv, #letterDiv {
   display: none;
+}
+.rotate{
+  transform: rotate(1440deg);
+  transition: 2s;
 }
 /*/////////animted lights//////*/
 
@@ -264,4 +269,26 @@ li:nth-child(3n+3) {
     box-shadow: inset 0px 0px 0px 0px rgba(255,255,220,0),
                       0px 0px 0px 0px rgba(255,255,190,0);
   }
+}
+/*////////score decoration class/////*/
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+body {
+  background-color: black;
+}
+
+.scoreGlow {
+  font-family: 'Dosis', sans-serif;
+  color: rgb(252, 150, 65);
+  z-index: 1;
+  height: 1.4em;
+  width: 3.8em;
+  overflow: show;
+  margin: auto;
+font-size: 3em;
+
+  -webkit-text-stroke: 3px rgb(210, 65, 36);
+  text-shadow: 4px 4px 10px rgba(210, 65, 36, 0.4),
+               4px 4px 20px rgba(210, 45, 26, 0.4),
+               4px 4px 30px rgba(210, 25, 16, 0.4),
+               4px 4px 40px rgba(210, 15, 06, 0.4);
 }
