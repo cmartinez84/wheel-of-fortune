@@ -261,7 +261,11 @@ var updateScores = function(){
       var playerSpin =0;
       var playerSpin = spin();
       console.log(playerSpin);
-      $("span#currentSpin").text(playerSpin);
+      if (isNaN(playerSpin)){
+        $("span#currentSpin").text(playerSpin);
+      } else {
+      $("span#currentSpin").text("$" + playerSpin);
+      }
       if (playerSpin === "Bankrupt"){
         var playerSpin =0;
         $(".arrow1").toggle();
