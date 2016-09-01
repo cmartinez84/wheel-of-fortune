@@ -5,7 +5,7 @@ function Player(name){
   this.name = name;
   this.score = 0;
   this.avatar = "";
-  this.spin;
+  this.spin =0;
   // this.spinNumber = spinNumber;
 };
 
@@ -51,7 +51,7 @@ AnswerMaker.prototype.letterCheck = function(letter, points) {
   }
   else{
     console.log(points);
-    console.log(occurrenceOfLetter.length * points);
+    console.log("this is how many points you should be getting "+ occurrenceOfLetter.length * points);
     this.occurenceArray = occurrenceOfLetter;
     return occurrenceOfLetter.length * points;
   }
@@ -106,8 +106,8 @@ var spin = function(){
   return spinOutput;
 };
 
-var player1;
-var player2;
+var player1="";
+var player2="";
 var getRandomAnswer = function(){
    var randomNumber =Math.floor((Math.random() * 25) + 1);
    return answersArray[randomNumber];
@@ -120,6 +120,10 @@ console.log(randomAnswer);
 $(document).ready(function(){
   $(".arrows").hide();
 
+var updateScores = function(){
+  $("#player-one-score").text(player1.score);
+  $("#player-two-score").text(player2.score);
+}
  var generateBoard = function(randomAnswer){
    var counter = 1;
    for(var i = 0; i <randomAnswer.hiddenArray.length; i++){
@@ -185,7 +189,7 @@ $(document).ready(function(){
           var compare2 = randomAnswer.answerSplit.join("");
           if(compare1 === compare2){
             $("input[id^='tile']").remove();
-            $("span").remove();
+            $(".blankSpace").remove();
             randomAnswer = getRandomAnswer();
             generateBoard(randomAnswer);
           }
@@ -201,14 +205,16 @@ $(document).ready(function(){
     }
   });
 }
-var roundOver = function(){
+ var roundOver = function(){
   var compare1 = randomAnswer.hiddenArray.join("");
   var compare2 = randomAnswer.answerSplit.join("");
   if(compare1 === compare2){
     $("input[id^='tile']").remove();
-    $("span").remove();
+    $(".blankSpace").remove();
     randomAnswer = getRandomAnswer();
     generateBoard(randomAnswer);
+    $("#lettersGuessed").remove();
+    playerTurn(player1);
   }
 }
 
@@ -227,129 +233,75 @@ var roundOver = function(){
     $("#player-two").text(player2Name);
     $("#player-one-score").text(player1.score);
     $("#player-two-score").text(player2.score);
+    $(".scoreGlow").append("<span id='currentSpin'></span>");
+
     playerTurn(player1);
   });
 
-  // var player1Spin;
-  var playerTurn = function(player, nextPlayer){
+
+  var playerTurn = function(player){
     $("button").off();
-    $("#player-one").toggleClass("selected");
-    $("#player-two").toggleClass("selected");
+    var nextPlayer="";
+    if( player === player1){
+      nextPlayer=player2;
+    }
+    if( player === player2){
+      nextPlayer=player1;
+    }
     $("#spin").click(function(){
-      player.spin = spin(wheelWedges);
-      if(isNaN)
-      $("span#currentSpin").text(player.spin);
-      console.log("this is player 1's spin" + player.spin)
-      if (player.spin === "Bankrupt"){
+      $(this).off();
+      var playerSpin =0;
+      var playerSpin = spin();
+      console.log(playerSpin);
+      $("span#currentSpin").text(playerSpin);
+      if (playerSpin === "Bankrupt"){
         $(".arrow1").toggle();
         $(".arrow2").toggle();
         player.score = 0;
-        $("player-one-score").text(player.score);
-        playerTurn(player2);
-      } else if (player.spin === "Lose Turn"){
+        updateScores();
+        playerTurn(nextPlayer);
+      } else if (playerSpin === "Lose Turn"){
         $(".arrow1").toggle();
         $(".arrow2").toggle();
-        playerTurn(player2);
+        playerTurn(nextPlayer);
       } else {
         $("#letterDiv").show();
         $("#spin").attr("disabled","disabled");
       }
+      $("#enterLetter").click(function(){
+        $(this).off();
+        $("#letterDiv").hide();
+        $("#spin").removeAttr("disabled");
+        var letterGuess = $("input#letterEntryInput").val();
+        var letterGuess = letterGuess.toLowerCase();
+        $("#lettersGuessed").append(letterGuess);
+        var roundScore = 0;
+        roundScore =randomAnswer.letterCheck(letterGuess, playerSpin);
+        console.log("tis is round score"+roundScore);
+        player.score += roundScore;
+        updateScores();
+        roundOver();
+        if(roundScore ===0){
+          $(".arrow1").toggle();
+          $(".arrow2").toggle();
+          playerTurn(nextPlayer);
+        }
+        else{
+          playerTurn(player);
+          changeBoard();
+        }
+      });
+      $("#finish").click(function(){
+        $(this).off();
+        $("#letterDiv").hide();
+        idLikeToSolveThePuzzle(player, playerSpin);
+        $("#spin").removeAttr("disabled");
+      });
+
+
+
     });
-    $("#enterLetter").click(function(){
-      $("#letterDiv").hide();
-      $("#spin").removeAttr("disabled");
-      player.letterGuess = $("input#letterEntryInput").val();
-      player.letterGuess = player.letterGuess.toLowerCase();
-      $("#lettersGuessed").append(player.letterGuess);
-      var roundScore =randomAnswer.letterCheck(player.LetterGuess, player.spin);
-      player.score += roundScore;
-      $("#player-one-score").text(player.score);
-      roundOver();
-      if(roundScore ===0){
-        $(".arrow1").toggle();
-        $(".arrow2").toggle();
-        playerTurn(player2);
-      }
-      else{
-        playerTurn(player2);
-        changeBoard();
-      }
-    });
-    $("button#vowel").click(function(){
-      $("#letterDiv").hide();
-      $("#spin").removeAttr("disabled");
-      var vowelInput = $("#vowelInput").val();
-      var roundScore = randomAnswer.buyVowel(vowelInput);
-      changeBoard();
-      player.score += roundScore;
-      $("#player-one-score").text(player.score);
-      alert(roundScore);
-    });
-    $("#finish").click(function(){
-      $("#letterDiv").hide();
-      idLikeToSolveThePuzzle(player1, player.spin);
-      $("#spin").removeAttr("disabled");
-    });
+
+
   }
-
-  var player2Spin;
-  var player2Turn = function(){
-    $("button").off();
-    $("#player-one").toggleClass("selected");
-    $("#player-two").toggleClass("selected");
-    $("#spin").click(function(){
-      player2Spin = spin(wheelWedges);
-      $("span#currentSpin").text(player2Spin);
-      console.log("this is player 2's spin" + player2Spin);
-      if (player2Spin === "Bankrupt"){
-        $(".arrow1").toggle();
-        $(".arrow2").toggle();
-        player2.score = 0;
-        $("#player-two-score").text(player2.score);
-        player1Turn();
-      } else if (player2Spin === "Lose Turn"){
-        $(".arrow1").toggle();
-        $(".arrow2").toggle();
-        player1Turn();
-      } else{
-        $("#letterDiv").show();
-        $("#spin").attr("disabled","disabled");
-      }
-    });
-    $("#enterLetter").click(function(){
-      $("#spin").removeAttr("disabled");
-      $("#letterDiv").hide();
-      var player2LetterGuess = $("input#letterEntryInput").val();
-      player2LetterGuess = player2LetterGuess.toLowerCase();
-      $("#lettersGuessed").append(player2LetterGuess);
-      var roundScore =randomAnswer.letterCheck(player2LetterGuess, player2Spin);
-      player2.score += roundScore;
-      $("#player-two-score").text(player2.score);
-      if(roundScore ===0){
-        $(".arrow1").toggle();
-        $(".arrow2").toggle();
-        player1Turn();
-      }
-      else{
-        player2Turn();
-        changeBoard();
-      }
-    });
-
-    $("button#vowel").click(function(){
-      $("#spin").removeAttr("disabled");
-      $("#letterDiv").hide();
-      var vowelInput = $("#vowelInput").val();
-      var roundScore = randomAnswer.buyVowel(vowelInput);
-      changeBoard();
-      player2.score += roundScore;
-      $("#player-one-score").text(player2.score);
-      alert(roundScore);
-    });
-    $("#finish").click(function(){
-      idLikeToSolveThePuzzle(player2, player2Spin);
-      // $("#spin").removeAttr("disabled");
-      // $("#letterDiv").hide();
-    });
-  };
 });
