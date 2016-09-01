@@ -83,6 +83,7 @@ var randomAnswer = getRandomAnswer();
 
 ///////////////////////////User Interface//////////////////////
 $(document).ready(function(){
+
   $(".arrows").hide();
   var updateScores = function(){
   if(isNaN(player1.score)){
@@ -112,6 +113,8 @@ $(document).ready(function(){
      } ///display spaces
      else{
        $("#displayBoard").append('<input maxlength="1" disabled id="tile'+ i +'" class="tiles" type="text" name="name">');
+       var degree = Math.round( Math.random() * 30 );
+       $("#tile" + i).css({transform: 'rotate(' + degree + 'deg)'});
      } ///display answer on board
    }
    $("#clue").text(randomAnswer.clue);
@@ -119,7 +122,7 @@ $(document).ready(function(){
  var changeBoard = function(){
     randomAnswer.occurenceArray.forEach(function(i){
       $("#tile" + i).val(randomAnswer.answerSplit[i])
-      $("#tile" + i).addClass("animated bounceIn");
+      $("#tile" + i).addClass("animated bounceIn tileFront");
       var random1 = Math.floor(Math.random() * 35);
       var random2 = Math.floor(Math.random() * 35);
       $("tile" + i).addClass("animated hinge");
@@ -127,6 +130,7 @@ $(document).ready(function(){
  }
  var idLikeToSolveThePuzzle = function(player, points, nextPlayer){
   $("input[id^='tile']").removeAttr("disabled");
+  $("input[id^='tile']").addClass("tileFront");
     var hiddenString = randomAnswer.hiddenArray.join("");
     hiddenString = hiddenString.replace(/\s/g, '');
     hiddenString= hiddenString.replace(/[_-]/g, "");
@@ -141,6 +145,8 @@ $(document).ready(function(){
           // alert("hurray");
           // $(".tiles").addClass("selected");
           player.score += (points * (noSpaceAnswer.length - hiddenString.length));
+            $("h1").addClass("animated hinge");
+
             $("input[id^='tile']").remove();
             $(".blankSpace").remove();
             $("br").remove();
